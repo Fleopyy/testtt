@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İnteraktif Test Sayfası</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #e8eaed;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            min-height: auto;
+            overflow: visible;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #1a237e;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #1a237e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .progress-info {
+            color: #455a64;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+            animation: slideIn 0.4s ease-in-out;
+            min-height: auto;
+            overflow: visible;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 16px;
+            color: #1a237e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-left: 4px solid #1a237e;
+            border-radius: 5px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 12px 15px;
+            border: 2px solid #455a64;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f5f5f5;
+            color: #1a237e;
+            font-weight: 500;
+            text-align: left;
+            transition: all 0.3s ease;
+            user-select: none;
+            word-wrap: break-word;
+            white-space: normal;
+            line-height: 1.5;
+        }
+
+        .option:hover:not(.selected-correct):not(.selected-incorrect):not(.correct-answer) {
+            background: #e3f2fd;
+            border-color: #1a237e;
+            transform: translateY(-2px);
+        }
+
+        .option.selected-incorrect {
+            background: #ef5350;
+            color: white;
+            border-color: #ef5350;
+            animation: shake 0.5s;
+        }
+
+        .option.selected-correct {
+            background: #66bb6a;
+            color: white;
+            border-color: #66bb6a;
+            animation: pulse 0.5s;
+        }
+
+        .option.correct-answer {
+            background: #66bb6a;
+            color: white;
+            border-color: #66bb6a;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .answer-feedback {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            display: none;
+            min-height: 50px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .answer-feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+            display: flex;
+            border-left: 4px solid #66bb6a;
+        }
+
+        .answer-feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+            display: flex;
+            border-left: 4px solid #ef5350;
+        }
+
+        .correct-info {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+            background: #e3f2fd;
+            border-left: 4px solid #1a237e;
+            border-radius: 5px;
+            color: #1a237e;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-prev {
+            background: #455a64;
+            color: white;
+        }
+
+        .btn-prev:hover {
+            background: #37474f;
+            transform: translateX(-3px);
+        }
+
+        .btn-prev:disabled {
+            background: #bdbdbd;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-next {
+            background: #1a237e;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #0d1b4a;
+            transform: translateX(3px);
+        }
+
+        .btn-next:disabled {
+            background: #bdbdbd;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .question-list {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .question-indicator {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            border: 2px solid #455a64;
+            background: white;
+            color: #1a237e;
+        }
+
+        .question-indicator:hover {
+            transform: scale(1.1);
+        }
+
+        .question-indicator.answered-correct {
+            background: #66bb6a;
+            color: white;
+            border-color: #66bb6a;
+        }
+
+        .question-indicator.answered-incorrect {
+            background: #ef5350;
+            color: white;
+            border-color: #ef5350;
+        }
+
+        .question-indicator.current {
+            background: #1a237e;
+            color: white;
+            border-color: #1a237e;
+            box-shadow: 0 0 10px rgba(26, 35, 126, 0.5);
+        }
+
+        .results-summary {
+            text-align: center;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .results-summary h2 {
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+
+        .percentage {
+            font-size: 18px;
+            color: #455a64;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 15px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .blank-input {
+            background: #1e1e1e;
+            color: #4CAF50;
+            border: 1px solid #888;
+            border-radius: 4px;
+            padding: 2px 8px;
+            margin: 0 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 15px;
+            outline: none;
+            width: auto;
+            min-width: 140px;
+            transition: all 0.3s;
+        }
+
+        .blank-input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .blank-input.correct {
+            border-color: #66bb6a;
+            background: rgba(102, 187, 106, 0.2);
+            color: #66bb6a;
+        }
+
+        .blank-input.incorrect {
+            border-color: #ef5350;
+            background: rgba(239, 83, 80, 0.2);
+            color: #ef5350;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            background: #bdbdbd;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 İnteraktif Test Sayfası</h1>
+            <div class="progress-info">
+                Soru <span id="currentQuestion">1</span> / <span id="totalQuestions">0</span>
+            </div>
+        </header>
+
+        <div class="question-list" id="questionList"></div>
+
+        <div class="results-summary" id="resultsSummary" style="display: none;">
+            <h2>Test Sonuçları</h2>
+            <div class="score-display" id="scoreDisplay">0/100</div>
+            <div class="percentage" id="percentageDisplay">%0</div>
+        </div>
+
+        <div class="question-container">
+            <div class="question-number" id="questionNumber">Soru 1</div>
+            <div class="question-text" id="questionText"></div>
+            <div id="codeContainer" style="display: none;"></div>
+            <div class="options" id="options"></div>
+            <div id="submitBtnContainer" style="display: none; text-align: center; margin-bottom: 20px;">
+                <button class="submit-btn" id="submitBlankBtn" onclick="checkBlankAnswers()">Cevapla</button>
+            </div>
+            <div class="correct-info" id="correctAnswerStatic"></div>
+            <div class="answer-feedback" id="feedback"></div>
+        </div>
+
+        <div class="navigation">
+            <button class="btn-prev" id="prevBtn" onclick="previousQuestion()">← Önceki</button>
+            <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Sonraki →</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler new - int - BilgiGoster",
+                code: `namespace Hafta bilmem ne
+{
+/*CLASS
+-property : özellik
+-metod: işlev,fonksiyon
+Ogrenci Class
+property:
+-OgrenciNo string
+-AdSoyad  string
+-Okul string
+-Bolum string
+-Sınıf int
+-Dersler liste
+metod:
+-DersKaydı
+-NotGörüntüle
+*/
+internal class Program
+{
+static void Main(string[] args)
+{
+// Console.WriteLine("Hello, World!");
+//class özelliklerini kullanmak için clasa ait nesne tanımlayalım
+//ogr : Ogrenci sınıfına ait nesne
+Ogrenci ogr = [[1]] Ogrenci();
+ogr.OgrenciNo = "1256456";
+ogr.Sinif = 2;
+ogr.Okul = "Sorgun Myo";
+ogr.Bolum = "Bilgisayar Tek";
+ogr.AdSoyad = "Ahmet Güneş";
+ogr.BilgiGoster();
+Ogrenci ogr2 = new Ogrenci();
+ogr2.OgrenciNo = "687645";
+ogr2.Sinif = 1;
+ogr2.Okul = "Sorgun Myo";
+ogr2.Bolum = "İnşaat Tek";
+ogr2.AdSoyad = "Mehmet Güneş";
+ogr2.BilgiGoster();
+//Console.WriteLine($"Ogrenci Bilgileri: {ogr.AdSoyad} - {ogr.OgrenciNo}");
+}
+}
+public class Ogrenci
+{
+//property
+public string OgrenciNo { get; set; }
+public string AdSoyad { get; set; }
+public string Okul { get; set; }
+public string Bolum { get; set; }
+public [[2]] Sinif { get; set; }
+//metod
+public void [[3]]()
+{
+Console.WriteLine("Ad Soyad:" + AdSoyad);
+Console.WriteLine("OgrenciNo:" + OgrenciNo);
+Console.WriteLine("Okul:" + Okul);
+Console.WriteLine("Bölüm:" + Bolum);
+Console.WriteLine("Sınıf:" + Sinif);
+}
+}
+}
+[/KOD]`,
+                answers: { "1": "new", "2": "int", "3": "BilgiGoster" }
+            },
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler BilgiGoster - ogr.Bolum - Console.WriteLine - double",
+                code: `namespace bunuda bilmiyom
+{
+internal class Program
+{
+static void Main(string[] args)
+{
+Console.WriteLine("Hello, World!");
+//ogr adında Ogrenci classına ait nesne ürettim
+Ogrenci ogr = new Ogrenci();
+ogr.OgrenciNo = "2413654";
+ogr.AdSoyad = "Ahmet Güler";
+ogr.Tc = "46546546";
+ogr.Okul = "Sorgun MYO";
+[[1]] = "Bilgisayar Prog";
+ogr.Sinif = 2;
+ogr.Cinsiyet = 'E';
+ogr.GANO = 2.68;
+ogr.MezuniyetDurum = false;
+ogr.BilgiGoster();
+ogr.DersKaydiYap();
+Console.WriteLine("Ogrenci GANOSU:" + ogr.GanoGetir());
+}
+}
+public class Ogrenci
+{
+//property: özellik
+//OgrenciNo,AdSoyad,Tc,Okul,Bolum,Cinsiyet,MezuniyetDurum,Sinif,GANO
+public string OgrenciNo { get; set; }
+public string AdSoyad { get; set; }
+public string Tc { get; set; }
+public string Okul { get; set; }
+public string Bolum { get; set; }
+public char Cinsiyet { get; set; }
+public bool MezuniyetDurum { get; set; }
+public int Sinif { get; set; }
+public [[2]] GANO { get; set; }
+//Metod- İşlev - Fonksiyon
+public void [[3]]()
+{
+Console.WriteLine("Ogrenci Adı:" + AdSoyad);
+Console.WriteLine("Okulu:" + Okul);
+Console.WriteLine("Bolum:" + Bolum);
+}
+public void DersKaydiYap()
+{
+[[4]]("Ders kaydı başarı ile yapılmıştır.");
+}
+public double GanoGetir()
+{
+return GANO;
+}
+}
+}
+[/KOD]`,
+                answers: { "1": "ogr.Bolum", "2": "double", "3": "BilgiGoster", "4": "Console.WriteLine" }
+            },
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler maas - SicilNo - public - departman - AdSoyad",
+                code: `namespace test
+{
+public class Personel
+{
+//AdSoyad,Sicil,Maas,Departman ->property
+//BilgiGoster() ->Metod
+public string AdSoyad { get; set; }
+public int SicilNo { get; set; }
+public float Maas { get; set; }
+public string Departman { get; set; }
+//Constructor - Kurucu Metod
+//public Personel(string adi,int sicil)
+//{
+//    AdSoyad = adi;
+//    SicilNo = sicil;
+//}
+public Personel(string AdSoyad,int SicilNo)
+{
+this.AdSoyad = AdSoyad;
+this.SicilNo = SicilNo;
+}
+//kurucuların aşırı yüklenmesi
+//constructor overloading
+//bir kurucuyu farklı sayıda yada tipte parametre ile yeniden yazmak
+[[5]] Personel(string AdSoyad,int SicilNo,string Departman,float Maas)
+{
+this.Maas = [[1]];
+this.AdSoyad = [[2]];
+this.Departman = [[3]];
+this.SicilNo = [[4]];
+}
+public void BilgiGoster()
+{
+Console.WriteLine("Adı Soyadı: "+AdSoyad);
+Console.WriteLine("Sicil No: "+SicilNo);
+Console.WriteLine("Maas: "+Maas);
+Console.WriteLine("Departman: "+Departman);
+}
+}
+}
+[/KOD]`,
+                answers: { "1": "Maas", "2": "AdSoyad", "3": "Departman", "4": "SicilNo", "5": "public" }
+            },
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler return - else - a + b - int",
+                code: `public static class Islem
+{
+//islem static classtır
+//Bu class sürekli hazır bekleyen class tipidir.
+public static double PI = 3.14;
+public static int Topla(int a,int b)
+{
+return [[1]];
+}
+public static double CemberAlani(int r)
+{
+return r * r * PI;
+}
+}
+public class Kisi
+{
+private string _ad; //field : alan
+private [[2]] _yas;
+public string GetAd()
+{
+[[4]] _ad.ToUpper(); //Harfleri büyük olacak şekilde dönder
+}
+public void SetAd(string yeniAd)
+{
+if (!string.IsNullOrWhiteSpace(yeniAd))
+_ad = yeniAd;
+[[3]]
+Console.WriteLine("Ad boş geçilemez");
+}
+public int GetYas()
+{
+return _yas;
+}
+public void SetYas(int yeniYas)
+{
+if (yeniYas >= 0 && yeniYas < 120)
+_yas = yeniYas;
+else
+Console.WriteLine("Yas aralığı yanlış");
+}
+}
+[/KOD]`,
+                answers: { "1": "a + b", "2": "int", "3": "else", "4": "return" }
+            },
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler get - set - _sifre - Miktar - Console.WriteLine - Console.WriteLine - Console.WriteLine - Console.WriteLine - Console.WriteLine - Console.WriteLine - Console.WriteLine",
+                code: `internal class Musteri
+{
+//field
+private string _tcNo;
+private string _iban;
+private string _sifre;
+private decimal _bakiye;
+//static field- kaç müşterimiz var sayacak
+private static int _musteriSayaci;
+//-------------------------------
+//Static property- Kaç müşteri var okunmalı-- read only
+//birinci yazım
+//public static int ToplamMusteri
+//{
+//    get
+//    {
+//        return _musteriSayaci;
+//    }
+//}
+//ikinci yazım
+public static int ToplamMusteri => _musteriSayaci;
+//-----------------------------
+//kurucu metod
+public Musteri(string tc,string iban,string sifre,decimal IlkBakiye,string ad)
+{
+//property e atama yapılacak
+TcNo = tc;
+AdSoyad = ad;
+Iban = iban;
+Sifre = sifre;
+_bakiye = IlkBakiye;
+_musteriSayaci++;
+Console.WriteLine(_musteriSayaci + ". müşteri oluşturuldu");
+}
+//TcNo property - Yazma kontrolu - 11 hane mi?
+public string TcNo
+{
+//maskeleyerek okuyalım 3hane sonra ***
+get
+{
+return _tcNo.Substring(0, 3) + "********";
+}
+set
+{
+if(value.Length==11)
+{
+_tcNo = value;
+}
+else
+Console.WriteLine("Tc 11 haneli olmalıdır");
+}
+}
+//Auto-implemented property - istenildiği gibi yazılıp okunur
+public string AdSoyad { get; set; }
+//ibanda 26 hane mi, ve tr başlıyor mu kontrolu
+//okumada maskeleme yapalım TR92****02
+public string Iban
+{
+[[1]]
+{
+return _iban.Substring(0, 4) + "****"
++ _iban.Substring(_iban.Length - 2);
+}
+[[2]]
+{
+if (value.Length == 26 && value.StartsWith("TR"))
+{
+_iban = value;
+}
+else
+Console.WriteLine("iban 26 haneli ve tr ile başlamalı");
+}
+}
+//sifre write-only property - en az 6 haneli
+public string Sifre
+{
+set
+{
+if(value.Length>=6)
+{
+[[3]] = value;
+}
+else
+{
+Console.WriteLine("Şifre en az 6 haneli olmalı");
+}
+}
+}
+//Bakiye read only property - sadece okunabilir
+public decimal Bakiye
+{
+get
+{
+return _bakiye;
+}
+}
+//public decimal Bakiye => _bakiye;
+//computed property - bakiyeye göre hesaplanır
+public string HesapDurumu
+{
+get
+{
+//ternary if , tek satırda if bloğu
+return _bakiye > 0 ? "Aktif" : "Borçlu";
+}
+}
+//METODLAR
+public void ParaYatir(decimal miktar)
+{
+if(miktar>0)
+{
+_bakiye += miktar;
+Console.WriteLine("Para yatırıldı");
+}
+else
+Console.WriteLine("Miktar yetersiz");
+}
+public void ParaCek(decimal [[4]])
+{
+if(miktar>0 && miktar<=_bakiye)
+{
+_bakiye -= miktar;
+Console.WriteLine("Para çekme işlemi tamamlandı");
+}
+else
+Console.WriteLine("Uygun miktar talep ediniz");
+}
+public bool SifreDogrula(string s)
+{
+return _sifre == s;
+//return _sifre == s?true:false;
+}
+public void BilgiGoster()
+{
+[[5]]("-------------------");
+[[6]]("Ad Soyad: "+AdSoyad);
+[[7]]("Bakiye: "+Bakiye);
+[[8]]("Tc: "+TcNo);
+[[9]]("Iban: "+Iban);
+[[10]]("Hesap Durumu: "+HesapDurumu);
+[[11]]("-------------------");
+}
+}
+[/KOD]`,
+                answers: { "1": "get", "2": "set", "3": "_sifre", "4": "miktar", "5": "Console.WriteLine", "6": "Console.WriteLine", "7": "Console.WriteLine", "8": "Console.WriteLine", "9": "Console.WriteLine", "10": "Console.WriteLine", "11": "Console.WriteLine" }
+            },
+            {
+                type: "fill_in_the_blank",
+                text: "Aşağıdaki soruları cevaplayın ameke Boşluklara yazılması gerekenler if - else - if (_not >= 90) return \"AA\";  - get - set - if (_not >= 60) return \"CB\"; - value - if (_not >= 70) return \"BB\"; - if (_not >= 80) return \"BA\";",
+                code: `internal class Ogrenci
+{
+/*private alan
+_ad string ->Boş olamaz
+_soyad string ->Boş olamaz
+_bolum string ->Boş olamaz
+_no int -> 0'dan büyük olmalı
+_not double -> 0 ile 100 arasında olmalı
+property
+Ad -> get+set(Boş olamaz kontrolu)
+Soyad -> get+set(Boş olamaz kontrolu)
+Bolum -> get+set(Boş olamaz kontrolu)
+OgrenciNo -> get+set(0dan büyükmü kontrolu)
+Not -> get+set(0-100 arasımı kontrolu)
+Değilse ekrana hata uyarısı yazdır
+TamAd -> get (_ad+_soyad)
+HarfNot -> get ("aa","bb", ff gibi)
+GectiMi bool -> get (>=60 ise geçti)
+*/
+//FIELD
+private string _ad;
+private string _soyad;
+private string _bolum;
+private int _no;
+private double _not;
+//Property
+public string Ad {
+get {
+return _ad;
+}
+set {
+if (string.IsNullOrWhiteSpace(value))
+Console.WriteLine("Ad boş olamaz");
+else
+_ad = value.Trim();
+//Trim(): metin önünde ve sonundaki boşlukları siler
+}
+}
+public string Soyad
+{
+get
+{
+return _soyad;
+}
+set
+{
+[[1]] (string.IsNullOrWhiteSpace(value))
+Console.WriteLine("Soyad boş olamaz");
+[[2]]
+_soyad = value.Trim();
+//Trim(): metin önünde ve sonundaki boşlukları siler
+}
+}
+public string Bolum
+{
+[[3]]
+{
+return _bolum;
+}
+[[4]]
+{
+if (string.IsNullOrWhiteSpace(value))
+Console.WriteLine("Bölüm boş olamaz");
+else
+_bolum = value.Trim();
+//Trim(): metin önünde ve sonundaki boşlukları siler
+}
+}
+public int OgrenciNo
+{
+get{
+return _no;
+}
+set{
+if (value > 0)
+_no = value;
+else
+Console.WriteLine("Öğrenci No 0'dan büyük olmalı");
+}
+}
+public double Not
+{
+get { return _not; }
+set
+{
+if (value < 0 || value > 100)
+Console.WriteLine("Not 0-100 arası olmalı");
+else
+_not = [[5]];
+}
+}
+//ReadOnly Hesaplanmış Propertyler
+public string TamAd => _ad + " " + _soyad;
+public string HarfNot
+{
+get
+{
+[[6]]
+[[7]]
+[[8]]
+[[9]]
+return "FF";
+}
+}
+public bool GectiMi => _not >= 60 ? true : false;
+public bool GectiMi2 => _not >= 60;
+//kurucu metod
+public Ogrenci(string ad,string soyad,string bolum,int no,double not)
+{
+Ad = ad;
+Soyad = soyad;
+Bolum = bolum;
+OgrenciNo = no;
+Not = not;
+}
+//ToString() -> varolanı değiştiricem
+//override ile metodu ezdim
+//listBoxda görüntülenme yapısını değiştirdik
+public override string ToString()
+{
+return $"{TamAd} - {Bolum}";
+}
+}
+[/KOD]`,
+                answers: { "1": "if", "2": "else", "3": "get", "4": "set", "5": "value", "6": "if (_not >= 90) return \"AA\";", "7": "if (_not >= 80) return \"BA\";", "8": "if (_not >= 70) return \"BB\";", "9": "if (_not >= 60) return \"CB\";" }
+            }
+        ];
+
+        const answerMap = {
+            "A": 0, "B": 1, "C": 2, "D": 3, "E": 4
+        };
+
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(null);
+
+        function init() {
+            document.getElementById('totalQuestions').textContent = questions.length;
+            renderQuestionList();
+            renderQuestion();
+        }
+
+        function renderQuestionList() {
+            const list = document.getElementById('questionList');
+            list.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const btn = document.createElement('div');
+                btn.className = 'question-indicator';
+                btn.textContent = index + 1;
+                btn.id = `q-${index}`;
+
+                if (index === currentQuestion) {
+                    btn.classList.add('current');
+                } else if (answers[index] !== null) {
+                    let isCorrect = false;
+                    if (q.type === 'fill_in_the_blank') {
+                        isCorrect = answers[index].isCorrect;
+                    } else {
+                        isCorrect = (answers[index] === q.correct);
+                    }
+
+                    if (isCorrect) {
+                        btn.classList.add('answered-correct');
+                    } else {
+                        btn.classList.add('answered-incorrect');
+                    }
+                }
+
+                btn.onclick = () => goToQuestion(index);
+                list.appendChild(btn);
+            });
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Soru ${currentQuestion + 1}`;
+            document.getElementById('questionText').textContent = q.text;
+            document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+
+            const optionsDiv = document.getElementById('options');
+            const codeContainer = document.getElementById('codeContainer');
+            const submitBtnContainer = document.getElementById('submitBtnContainer');
+            const correctStaticDiv = document.getElementById('correctAnswerStatic');
+            const feedback = document.getElementById('feedback');
+
+            optionsDiv.innerHTML = '';
+            codeContainer.innerHTML = '';
+            feedback.style.display = 'none';
+            correctStaticDiv.style.display = 'none';
+            correctStaticDiv.textContent = '';
+
+            if (q.type === 'fill_in_the_blank') {
+                optionsDiv.style.display = 'none';
+                codeContainer.style.display = 'block';
+                submitBtnContainer.style.display = 'block';
+
+                // Güvenli kod gösterimi için < ve > gibi karakterleri escape et  
+                let escaper = document.createElement('div');
+                escaper.textContent = q.code;
+                let codeHtml = escaper.innerHTML;
+
+                Object.keys(q.answers).forEach(key => {
+                    let inputHtml = `<input type="text" id="blank-${key}" data-key="${key}" class="blank-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />`;
+                    // codeHtml içerisinde &lt; vs olsa bile [[1]] yapısı bozulmaz
+                    codeHtml = codeHtml.replace(`[[${key}]]`, inputHtml);
+                });
+
+                codeContainer.innerHTML = `<pre class="code-block"><code>${codeHtml}</code></pre>`;
+
+                if (answers[currentQuestion] !== null) {
+                    const ansData = answers[currentQuestion];
+                    Object.keys(q.answers).forEach(key => {
+                        const inputEl = document.getElementById(`blank-${key}`);
+                        inputEl.value = ansData.inputs[key] || '';
+                        inputEl.disabled = true;
+
+                        const isFieldCorrect = (ansData.inputs[key] || '').trim().toLowerCase() === q.answers[key].trim().toLowerCase();
+                        if (isFieldCorrect) {
+                            inputEl.classList.add('correct');
+                        } else {
+                            inputEl.classList.add('incorrect');
+                        }
+                    });
+
+                    submitBtnContainer.style.display = 'none';
+                    correctStaticDiv.style.display = 'none';
+
+                    feedback.classList.remove('correct', 'incorrect');
+                    if (ansData.isCorrect) {
+                        feedback.textContent = '✓ Doğru! Tebrikler!';
+                        feedback.classList.add('correct');
+                    } else {
+                        feedback.textContent = '✗ Hatalı doldurulan boşluklar var.';
+                        feedback.classList.add('incorrect');
+                    }
+                    feedback.style.display = 'flex';
+                } else {
+                    document.getElementById('submitBlankBtn').disabled = false;
+                }
+            } else {
+                optionsDiv.style.display = 'grid';
+                codeContainer.style.display = 'none';
+                submitBtnContainer.style.display = 'none';
+                correctStaticDiv.style.display = 'none';
+
+                if (q.options) {
+                    q.options.forEach((option, index) => {
+                        const btn = document.createElement('div');
+                        btn.className = 'option';
+                        btn.textContent = option;
+                        btn.onclick = () => selectAnswer(index);
+                        optionsDiv.appendChild(btn);
+                    });
+                }
+
+                if (answers[currentQuestion] !== null) {
+                    const selectedIndex = answerMap[answers[currentQuestion]];
+                    const correctIndex = answerMap[q.correct];
+                    const allOptions = document.querySelectorAll('.option');
+
+                    if (answers[currentQuestion] === q.correct) {
+                        allOptions[selectedIndex].classList.add('selected-correct');
+                    } else {
+                        allOptions[selectedIndex].classList.add('selected-incorrect');
+                        if (allOptions[correctIndex]) {
+                            allOptions[correctIndex].classList.add('correct-answer');
+                        }
+                    }
+                }
+
+                if (answers[currentQuestion] !== null) {
+                    feedback.classList.remove('correct', 'incorrect');
+                    if (answers[currentQuestion] === q.correct) {
+                        feedback.textContent = '✓ Doğru! Tebrikler!';
+                        feedback.classList.add('correct');
+                    } else {
+                        const correctIndex = answerMap[q.correct];
+                        const correctOptionText = q.options[correctIndex];
+                        feedback.textContent = `✗ Yanlış! Doğru cevap: ${q.correct}) ${correctOptionText}`;
+                        feedback.classList.add('incorrect');
+                    }
+                    feedback.style.display = 'flex';
+                } else {
+                    feedback.classList.remove('correct', 'incorrect');
+                    feedback.innerHTML = '';
+                    feedback.style.display = 'none';
+                }
+
+                // Doğru cevap static kısmı kaldırıldı
+            }
+
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = currentQuestion === questions.length - 1;
+
+            renderQuestionList();
+        }
+
+        function checkBlankAnswers() {
+            const q = questions[currentQuestion];
+            if (q.type !== 'fill_in_the_blank' || answers[currentQuestion] !== null) return;
+
+            let allCorrect = true;
+            const userInputs = {};
+
+            Object.keys(q.answers).forEach(key => {
+                const inputEl = document.getElementById(`blank-${key}`);
+                const val = inputEl.value;
+                userInputs[key] = val;
+                if (val.trim().toLowerCase() !== q.answers[key].trim().toLowerCase()) {
+                    allCorrect = false;
+                }
+            });
+
+            answers[currentQuestion] = {
+                isCorrect: allCorrect,
+                inputs: userInputs
+            };
+
+            document.getElementById('submitBlankBtn').disabled = true;
+            renderQuestion();
+
+            if (allCorrect) {
+                if (currentQuestion < questions.length - 1) {
+                    setTimeout(() => {
+                        currentQuestion++;
+                        renderQuestion();
+                    }, 2000);
+                }
+            }
+        }
+
+        // Cevap seç
+        function selectAnswer(index) {
+            if (answers[currentQuestion] === null) {
+                const answerLetter = Object.keys(answerMap)[index];
+                answers[currentQuestion] = answerLetter;
+
+                // Render et, sonra disable et
+                renderQuestion();
+
+                // Tüm şıkları disable et
+                setTimeout(() => {
+                    const allOptions = document.querySelectorAll('.option');
+                    allOptions.forEach(btn => {
+                        btn.style.pointerEvents = 'none';
+                        btn.style.cursor = 'default';
+                    });
+                }, 100);
+
+                // Doğru cevap ise 2 saniye sonra sonraki soruya otomatik geç
+                if (answerLetter === questions[currentQuestion].correct) {
+                    if (currentQuestion < questions.length - 1) {
+                        setTimeout(() => {
+                            currentQuestion++;
+                            renderQuestion();
+                        }, 2000);
+                    }
+                }
+            }
+        }
+
+        // Önceki soruya git
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        // Sonraki soruya git
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            }
+        }
+
+        // Belirli bir soruya git
+        function goToQuestion(index) {
+            currentQuestion = index;
+            renderQuestion();
+        }
+
+        // Sayfayı başlat
+        init();
+    </script>
+</body>
+
+</html>
