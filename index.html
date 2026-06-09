@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobil Programlama Etkileşimli Öğrenim Portalı</title>
+    <title>Veritabanı Yönetimi Etkileşimli Öğrenim Portalı</title>
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --bg-dark: #080a11;
@@ -210,11 +212,18 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Sınav Muafiyeti ve Kılavuz Kartları */
+        /* Kılavuz Kartları */
         .alert-card {
             border-radius: 12px;
             padding: 24px;
@@ -329,14 +338,29 @@
             font-family: 'Outfit', sans-serif;
         }
 
-        .box-lecture { border-left-color: var(--accent); }
-        .box-lecture h3 { color: #82aaff; }
-        
-        .box-tip { border-left-color: var(--warning); }
-        .box-tip h3 { color: var(--warning); }
+        .box-lecture {
+            border-left-color: var(--accent);
+        }
 
-        .box-danger { border-left-color: var(--danger); }
-        .box-danger h3 { color: var(--danger); }
+        .box-lecture h3 {
+            color: #82aaff;
+        }
+
+        .box-tip {
+            border-left-color: var(--warning);
+        }
+
+        .box-tip h3 {
+            color: var(--warning);
+        }
+
+        .box-danger {
+            border-left-color: var(--danger);
+        }
+
+        .box-danger h3 {
+            color: var(--danger);
+        }
 
         /* Başlıklar & Tipografi */
         h1 {
@@ -422,7 +446,7 @@
             overflow-x: auto;
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 0.92rem;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #e4ebf5;
             tab-size: 2;
         }
@@ -440,7 +464,7 @@
             width: 140px;
             outline: none;
             transition: all 0.2s ease;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
@@ -551,7 +575,7 @@
             border-radius: 12px;
             padding: 24px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .conceptual-card h3 {
@@ -608,12 +632,31 @@
         }
 
         /* Syntax colors */
-        .kw { color: #c792ea; font-weight: 600; }
-        .fn { color: #82aaff; }
-        .str { color: #c3e88d; }
-        .tag { color: #f07178; }
-        .cmt { color: #676e95; font-style: italic; }
-        .prop { color: #ffcb6b; }
+        .kw {
+            color: #f07178; /* Red/Rose keywords */
+            font-weight: 600;
+        }
+
+        .fn {
+            color: #82aaff; /* Blue functions */
+        }
+
+        .str {
+            color: #c3e88d; /* Green strings */
+        }
+
+        .tag {
+            color: #f07178;
+        }
+
+        .cmt {
+            color: #676e95;
+            font-style: italic;
+        }
+
+        .prop {
+            color: #ffcb6b;
+        }
 
         /* --- Mobil Duyarlılık (Responsive) --- */
         @media (max-width: 768px) {
@@ -718,7 +761,8 @@
                 font-size: 0.82rem;
             }
 
-            .code-input, .conceptual-input {
+            .code-input,
+            .conceptual-input {
                 font-size: 0.85rem;
                 width: 100px;
                 padding: 1px 4px;
@@ -757,18 +801,20 @@
         <div class="nav-brand">
             <div class="nav-brand-logo">
                 <!-- SVG Terminal Brackets / Screen Logo -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="16 18 22 12 16 6"></polyline>
                     <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
             </div>
-            <h2>PROGPAD</h2>
-            <span>Final Sınavı</span>
+            <h2>VYS PAD</h2>
+            <span>İleri Seviye</span>
         </div>
 
         <div class="nav-links">
             <button class="nav-link active" data-tab="guide">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="12" y1="16" x2="12" y2="12"></line>
                     <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -776,21 +822,24 @@
                 Kılavuz & Duyurular
             </button>
             <button class="nav-link" data-tab="notes">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
                 Ders Notları
             </button>
             <button class="nav-link" data-tab="code-exercises">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="16 18 22 12 16 6"></polyline>
                     <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
                 Kod Tamamlama
             </button>
             <button class="nav-link" data-tab="conceptual-quizzes">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
@@ -799,7 +848,7 @@
         </div>
 
         <div class="nav-progress">
-            <div class="nav-progress-text" id="score-text">Skor: 0 / 23 Puan</div>
+            <div class="nav-progress-text" id="score-text">Skor: 0 / 43 Puan</div>
             <div class="nav-progress-bar-bg">
                 <div class="nav-progress-bar-fill" id="progress-fill"></div>
             </div>
@@ -811,28 +860,28 @@
 
         <!-- ================= SEKME: REHBER & DUYURULAR ================= -->
         <div id="guide" class="tab-section active">
-            <h1>Mobil Programlama Sınav Kılavuzu & Önemli Duyurular</h1>
-            <p class="subtitle">Sınav öncesi bilmeniz gereken en kritik bilgiler ve muafiyetler</p>
+            <h1>Veritabanı Yönetim Sistemleri Kılavuzu & Duyurular</h1>
+            <p class="subtitle">Sınav ve alıştırmalarda dikkat etmeniz gereken en kritik SQL kuralları</p>
 
             <div class="alert-card alert-card-danger">
-                <h3>ÇOK ÖNEMLİ: STYLESHEET MUAFİYETİ!</h3>
-                <p><strong>Değerli arkadaşlar, final sınavınızda <code>StyleSheet</code> (CSS biçimlendirmeleri, renkler, padding vb. tasarım stilleri) kısımlarından sorumlu DEĞİLSİNİZ!</strong></p>
-                <p>Sınavda tasarıma vakit harcamak yerine, aşağıda listelenen kod işlevlerine ve asıl mantığa odaklanmanız gerekmektedir.</p>
+                <h3>ÇOK ÖNEMLİ: SQL SENTAKS HASSASİYETİ VE SYNTAX HATALARI!</h3>
+                <p><strong>Değerli arkadaşlar, veritabanı yönetim sistemleri (VYS) sınavınızda kod yazarken harf hataları ve syntax kısıtlamalarına dikkat etmeniz gerekmektedir.</strong></p>
+                <p>SQL kelimelerini (SELECT, INSERT, UPDATE, TRIGGER vb.) büyük harfle yazmaya özen gösterin. Özellikle Trigger yapılarında satır bazlı işlem yapıldığını belirten <code>FOR EACH ROW</code> deyimini veya komut sonlarındaki noktalı virgülleri (;) unutmak doğrudan syntax hatasına yol açacaktır.</p>
             </div>
 
             <div class="alert-card alert-card-success">
                 <h3>Sınavda Kesinlikle Karşılaşacağınız Detaylı Çalışılması Gereken Konular</h3>
-                <p>Final sınavına hazırlanırken mutlaka şu konu başlıklarını ezberleyin ve mantığını öğrenin:</p>
+                <p>Sınava hazırlanırken mutlaka şu konu başlıklarını ezberleyin ve mantığını öğrenin:</p>
                 <ul style="margin-top: 10px;">
-                    <li><strong>1. Sqlite ile Veri Saklama (SQLite):</strong> Veritabanı bağlantısı, execSync, runSync, getAllSync metotlarının farkları ve asıl önemlisi <strong>SQL Injection</strong> koruması.</li>
-                    <li><strong>2. AsyncStorage (Yerel Saklama):</strong> Asenkron yapısı (await/async), sadece String saklama kuralı ve bu kuralın <code>JSON.stringify</code> ve <code>JSON.parse</code> ile aşılması.</li>
-                    <li><strong>3. Medya ve Video Kullanımı:</strong> <code>expo-image</code> (contentFit, transition), <code>expo-audio</code> (useAudioPlayer) ve <code>expo-video</code> (useVideoPlayer ve VideoView) bileşenlerinin kullanımı.</li>
-                    <li><strong>4. Haritalar ve Web Servisleri:</strong> <code>react-native-maps</code> kütüphanesi (MapView, Marker kullanımı, koordinat yapıları) ve <code>fetch</code>/<code>axios</code> kullanarak uzak sunucudan (Web Servis) asenkron veri çekme.</li>
+                    <li><strong>1. Aggregate ve Gruplama:</strong> COUNT, SUM, AVG, MAX, MIN fonksiyonları ile GROUP BY ve HAVING kullanımı. Satırları filtreleyen WHERE ile grupları filtreleyen HAVING farkı.</li>
+                    <li><strong>2. Stored Procedures (Saklı Yordamlar):</strong> Parametre türleri (IN, OUT, INOUT), yerel değişken tanımlama (DECLARE), değişkene değer atama (SELECT INTO) ve koşullu ifadeler (IF/ELSE).</li>
+                    <li><strong>3. Triggers (Tetikleyiciler):</strong> INSERT, UPDATE, DELETE olayları için BEFORE ve AFTER tetikleyici mimarisi. Verilerin eski ve yeni hallerine erişmek için <code>OLD</code> ve <code>NEW</code> ifadeleri.</li>
+                    <li><strong>4. Hata Yönetimi:</strong> Koşullara uymayan işlemleri iptal edip hata fırlatmak amacıyla kullanılan <code>SIGNAL SQLSTATE '45000'</code> yapısı.</li>
                 </ul>
             </div>
 
             <h2>Çalışma Yol Haritası</h2>
-            <p>Bu portal, sınavda karşınıza çıkacak olan tüm kod bloklarını ve kavramları interaktif bir şekilde deneyimlemenizi sağlayacaktır. Yukarıdaki menüden <strong>Ders Notları</strong> sekmesine geçerek detaylı konu anlatımlarını okuyabilir, ardından <strong>Kod ve Kavramsal Egzersizler</strong> ile kendinizi sınayabilirsiniz!</p>
+            <p>Bu portal, sınavda karşınıza çıkacak olan tüm ileri seviye SQL kod bloklarını ve kavramları interaktif bir şekilde deneyimlemenizi sağlayacaktır. Yukarıdaki menüden <strong>Ders Notları</strong> sekmesine geçerek detaylı konu anlatımlarını okuyabilir, ardından <strong>Kod ve Kavramsal Egzersizler</strong> ile kendinizi sınayabilirsiniz!</p>
         </div>
 
         <!-- ================= SEKME: DERS NOTLARI ================= -->
@@ -842,128 +891,217 @@
 
             <!-- Alt Sekmeler -->
             <div class="subtabs">
-                <button class="subtab active" data-subtab="note-h6">Hafta 6: Medya</button>
-                <button class="subtab" data-subtab="note-h7">Hafta 7: AsyncStorage</button>
-                <button class="subtab" data-subtab="note-h11">Hafta 11: SQLite</button>
-                <button class="subtab" data-subtab="note-h12">Hafta 12: State & useMemo</button>
-                <button class="subtab" data-subtab="note-maps">Harita ve Web Servisleri</button>
+                <button class="subtab active" data-subtab="note-agg">1. Aggregate ve Gruplama</button>
+                <button class="subtab" data-subtab="note-sp">2. Stored Procedures</button>
+                <button class="subtab" data-subtab="note-trg">3. Triggers (Tetikleyiciler)</button>
             </div>
 
-            <!-- Alt Sekme İçeriği: Hafta 6 -->
-            <div id="note-h6" class="subtab-content active">
-                <h2>Hafta 6: Medya Yönetimi (Resim, Ses ve Video)</h2>
+            <!-- Alt Sekme İçeriği: Aggregate -->
+            <div id="note-agg" class="subtab-content active">
+                <h2>1. Aggregate (Toplama) Fonksiyonları</h2>
                 <div class="edu-grid">
                     <div class="box box-lecture">
-                        <h3>📚 Medya Kütüphaneleri & Resim Kullanımı</h3>
-                        <p>Mobil uygulamalarda ses, resim ve video kullanımı için Expo'nun özel paketleri kullanılır. Temel kütüphaneler: <code>expo-image</code>, <code>expo-audio</code> ve <code>expo-video</code> şeklindedir.</p>
-                        <p><strong>Resim Kullanımı:</strong> Standart <code>Image</code> bileşeni ile internetten veya yerel dosyalardan resim gösterilebilir.</p>
+                        <h3>📚 Toplama Fonksiyonları</h3>
+                        <p>Aggregate fonksiyonlar birden fazla satırdaki veriyi tek bir sonuç üretmek üzere işlerler:</p>
                         <ul>
-                            <li><code>contentFit="cover"</code>: Resmin bulunduğu kutuyu (oranı koruyarak) tamamen doldurmasını sağlar.</li>
-                            <li><code>contentFit="contain"</code>: Resmi kırpmadan ve oranını bozmadan kutunun içine sığdırır.</li>
-                            <li><code>transition={500}</code>: Resim ilk yüklenirken ekranda yumuşak bir geçiş efekti (solma geçişi) sağlar.</li>
+                            <li><code>COUNT()</code>: Satır veya kayıt sayısını verir. Benzersiz değerleri saymak için <code>COUNT(DISTINCT sutun)</code> kullanılır.</li>
+                            <li><code>SUM() & AVG()</code>: Sayısal sütunların toplamını ve ortalamasını alır. Örn: <code>SUM(miktar * fiyat)</code>.</li>
+                            <li><code>MAX() & MIN()</code>: Veri grubundaki en büyük ve en küçük değerleri bulur.</li>
                         </ul>
                     </div>
                     <div class="box box-tip">
-                        <h3>💡 Sınav İpuçları: Ses & Video Farkları</h3>
-                        <p><strong>Ses Kullanımı:</strong> Ses oynatıcı nesnesini oluşturmak için <code>useAudioPlayer</code> hook'u kullanılır. Sesi başlatmak için <code>player.play()</code>, duraklatmak için ise <code>player.pause()</code> komutları tetiklenir.</p>
-                        <p><strong>Video Kullanımı:</strong> İşlem iki aşamalıdır. Videonun arka plan oynatma mantığını <code>useVideoPlayer</code> kurarken, görüntüyü arayüzde ekrana basan asıl görsel bileşen <code>VideoView</code> bileşenidir.</p>
-                        <ul>
-                            <li><code>player.loop = true</code>: Video bittiğinde otomatik olarak başa dönüp tekrar oynamasını sağlar.</li>
-                            <li><code>allowsFullscreen</code>: Videonun tam ekranda açılmasına izin veren parametredir.</li>
-                            <li><code>allowsPictureInPicture</code>: Videoyu küçük pencere (Picture-in-Picture) modunda oynatmayı etkinleştirir.</li>
-                        </ul>
+                        <h3>💡 GROUP BY ve HAVING İlişkisi</h3>
+                        <p>Aynı değere sahip kayıtları gruplamak için <code>GROUP BY</code> kullanılır. Gruplanmış verileri filtrelemek istediğimizde <code>HAVING</code> kullanılır.</p>
+                        <p><strong>Kritik Fark:</strong> WHERE satırları filtrelerken, HAVING grupları filtreler. Örneğin, toplamı 10.000'den büyük olan grupları seçmek için <code>WHERE SUM(...) > 10000</code> yazmak hatalıdır; <code>HAVING SUM(...) > 10000</code> yazılmalıdır.</p>
                     </div>
+                </div>
+
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 En Başarılı Öğrenci Bulma Sorgusu</span>
+                    </div>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">SELECT</span> O.ad, <span class="fn">AVG</span>(N.notu) <span class="kw">AS</span> ortalama
+<span class="kw">FROM</span> Ogrenciler O
+<span class="kw">JOIN</span> Notlar N <span class="kw">ON</span> O.ogrNo = N.ogrNo
+<span class="kw">GROUP BY</span> O.ad
+<span class="kw">ORDER BY</span> ortalama <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> 1;</code></pre>
+                </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 Kodun Detaylı Açıklaması</h3>
+                    <p>Bu sorgu, iki tabloyu birleştirerek öğrenci bazında not ortalaması hesaplar ve en yüksek ortalamaya sahip ilk öğrenciyi seçer:</p>
+                    <ul>
+                        <li><strong>SELECT O.ad, AVG(N.notu) AS ortalama:</strong> Öğrencinin adını ve notlar tablosundaki <code>notu</code> sütununun ortalamasını (<code>AVG</code>) hesaplayarak <code>ortalama</code> adında geçici bir sütun (takma ad / alias) olarak seçer.</li>
+                        <li><strong>FROM Ogrenciler O:</strong> Ana veri kaynağı olarak <code>Ogrenciler</code> tablosunu belirler ve bu tabloya <code>O</code> kısa adını (alias) verir.</li>
+                        <li><strong>JOIN Notlar N ON O.ogrNo = N.ogrNo:</strong> <code>Ogrenciler</code> tablosunu, öğrenci numaraları (<code>ogrNo</code>) üzerinden <code>Notlar</code> tablosu ile birleştirir (INNER JOIN). Böylece her öğrencinin aldığı notlarla eşleşmesi sağlanır.</li>
+                        <li><strong>GROUP BY O.ad:</strong> Ortalamanın her öğrenci için ayrı ayrı hesaplanabilmesi için verileri öğrenci adına göre gruplar.</li>
+                        <li><strong>ORDER BY ortalama DESC:</strong> Hesaplanan not ortalamalarını en yüksekten en düşüğe (azalan sırada - <code>DESC</code>) sıralar.</li>
+                        <li><strong>LIMIT 1:</strong> Sıralanan bu listeden sadece en üstteki (yani en yüksek ortalamaya sahip) 1 kaydı çeker.</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Alt Sekme İçeriği: Hafta 7 -->
-            <div id="note-h7" class="subtab-content" style="display:none;">
-                <h2>Hafta 7: AsyncStorage & Yerel Depolama Çözümleri</h2>
+            <!-- Alt Sekme İçeriği: Stored Procedures -->
+            <div id="note-sp" class="subtab-content" style="display:none;">
+                <h2>2. Stored Procedure (Saklı Yordamlar)</h2>
                 <div class="edu-grid">
                     <div class="box box-lecture">
-                        <h3>📚 Veritabanı Türleri ve AsyncStorage</h3>
-                        <p>Veritabanı, verilerin kalıcı olarak saklandığı sistemlerdir. Mobil uygulamalarda temel amaç, <strong>uygulama kapansa dahi verilerin silinmemesi</strong>, kullanıcıya özel kalması ve tekrar erişilebilir olmasıdır.</p>
-                        <p>Mobil platformlarda veritabanları ikiye ayrılır:</p>
+                        <h3>📚 Saklı Yordamların Yapısı ve Derleme Aşamaları</h3>
+                        <p>Veritabanı sunucusunda saklanan hazır SQL komut bloklarıdır. Kod tekrarını önler, güvenliği artırır ve performansı yükseltir.</p>
                         <ul>
-                            <li><strong>Yerel Veritabanı (Local):</strong> Telefon hafızasında tutulur ve internet bağlantısı gerektirmez (Örn: AsyncStorage, SQLite).</li>
-                            <li><strong>Sunucu Veritabanı (Remote):</strong> Veri internet üzerinden gelir ve API/Backend (Firebase, PHP, REST API) gerektirir.</li>
+                            <li><strong>Initial Processing (İlk İşleme):</strong> Prosedür ilk oluşturulduğunda derlenir ve veritabanında saklanır.</li>
+                            <li><strong>Subsequent Processing (Sonraki İşleme):</strong> Sonraki çağrılarda yeniden derlenmez; doğrudan saklanan derlenmiş kod hızlıca yürütülür.</li>
+                        </ul>
+                    </div>
+                    <div class="box box-tip">
+                        <h3>💡 Parametreler & Değişkene Veri Aktarma</h3>
+                        <p>Prosedürler 3 tip parametre kabul edebilir: <strong>IN</strong> (içeri değer gönderir), <strong>OUT</strong> (çağıran yere değer döndürür), <strong>INOUT</strong> (değeri hem alır hem de güncelleyerek geri döndürür).</p>
+                        <p>Yordam içinde bir tablodan okunan değeri yerel bir değişkene atamak için <code>SELECT kolon INTO degisken FROM ...</code> kalıbı kullanılır.</p>
+                        <p>MySQL'de prosedürler doğrudan güncellenemez; önce <code>DROP PROCEDURE IF EXISTS prosedür_adi;</code> ile silinip baştan oluşturulmalıdır.</p>
+                    </div>
+                </div>
+
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 Maaş Güncelleme Saklı Yordamı (Stored Procedure)</span>
+                    </div>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">DELIMITER</span> //
+<span class="kw">CREATE PROCEDURE</span> maas_guncelle_v2(<span class="kw">IN</span> pid INT, <span class="kw">IN</span> artis INT)
+<span class="kw">BEGIN</span>
+  <span class="kw">DECLARE</span> mevcut_maas INT;
+  
+  <span class="kw">SELECT</span> maas <span class="kw">INTO</span> mevcut_maas <span class="kw">FROM</span> Personel <span class="kw">WHERE</span> id = pid;
+  
+  <span class="kw">IF</span> mevcut_maas <span class="kw">IS NULL THEN</span>
+    <span class="kw">INSERT INTO</span> Loglar (mesaj) <span class="kw">VALUES</span> (CONCAT(<span class="str">'HATA: Personel bulunamadı'</span>));
+  <span class="kw">ELSE</span>
+    <span class="kw">UPDATE</span> Personel <span class="kw">SET</span> maas = maas + artis <span class="kw">WHERE</span> id = pid;
+  <span class="kw">END IF</span>;
+<span class="kw">END</span> //
+<span class="kw">DELIMITER</span> ;</code></pre>
+                </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 Kodun Detaylı Açıklaması</h3>
+                    <p>Bu saklı yordam, belirli bir personelin maaşına zam yapar veya personel bulunamazsa log tablosuna hata kaydeder:</p>
+                    <ul>
+                        <li><strong>DELIMITER // ve DELIMITER ;:</strong> MySQL'de varsayılan noktalı virgül (;) ayırıcısını geçici olarak <code>//</code> yapar. Bu sayede prosedür içindeki noktalı virgüllerin prosedürü erken sonlandırması engellenir. En sonda tekrar eski haline (;) getirilir.</li>
+                        <li><strong>CREATE PROCEDURE maas_guncelle_v2(IN pid INT, IN artis INT):</strong> <code>maas_guncelle_v2</code> adında, dışarıdan iki adet girdi (<code>IN</code>) parametresi (personel id'si ve artış miktarı) alan bir saklı yordam tanımlar.</li>
+                        <li><strong>DECLARE mevcut_maas INT;:</strong> Prosedür içinde kullanılmak üzere tam sayı tipinde <code>mevcut_maas</code> yerel değişkeni tanımlar.</li>
+                        <li><strong>SELECT maas INTO mevcut_maas FROM Personel WHERE id = pid;:</strong> Belirtilen personelin maaşını bulup <code>INTO</code> komutu ile deklare ettiğimiz <code>mevcut_maas</code> değişkenine atar.</li>
+                        <li><strong>IF mevcut_maas IS NULL THEN ... ELSE ... END IF;:</strong> Maaşın bulunup bulunamadığını denetler. Eğer personel bulunamazsa (NULL ise) log tablosuna INSERT yapar. Bulunursa UPDATE ile personelin maaşını günceller.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Alt Sekme İçeriği: Triggers -->
+            <div id="note-trg" class="subtab-content" style="display:none;">
+                <h2>3. Triggers (Tetikleyiciler)</h2>
+                <div class="edu-grid">
+                    <div class="box box-lecture">
+                        <h3>📚 Olay Bazlı Tetikleyiciler</h3>
+                        <p>Tetikleyiciler veritabanında belirli bir olay (INSERT, UPDATE, DELETE) gerçekleştiğinde otomatik olarak çalışan SQL bloklarıdır.</p>
+                        <ul>
+                            <li><strong>BEFORE:</strong> Olay gerçekleşmeden önce çalışır. Genellikle veri kontrolleri ve kısıtlamalarda kullanılır.</li>
+                            <li><strong>AFTER:</strong> Olay gerçekleştikten sonra çalışır. Loglama veya istatistik güncellemeleri için idealdir.</li>
                         </ul>
                     </div>
                     <div class="box box-danger">
-                        <h3>⚠️ AsyncStorage Çalışma Yapısı ve Kuralları</h3>
-                        <p>AsyncStorage; küçük boyutlu verileri tutmak için kullanılan, <strong>Key-Value (Anahtar-Değer)</strong> mantığıyla çalışan yerel bir çözümdür.</p>
+                        <h3>⚠️ NEW ve OLD Anahtar Kelimeleri</h3>
+                        <p>Tetikleyicilerde işlem gören satırın eski ve yeni verilerine erişmek için iki anahtar kelime kullanılır:</p>
                         <ul>
-                            <li>Veri kaydetmek için <code>AsyncStorage.setItem(key, value)</code> metodu kullanılır.</li>
-                            <li>Veri okumak için <code>AsyncStorage.getItem(key)</code> metodu kullanılır.</li>
-                            <li><strong>Önemli Sınır:</strong> AsyncStorage sadece metin (string) saklayabilir. Bu yüzden dizileri/objeleri kaydederken onları metne çeviren <code>JSON.stringify()</code> kullanılır. Okunan metni tekrar objeye çevirmek (parçalamak) için ise <code>JSON.parse()</code> kullanılır.</li>
-                            <li>Diske erişim yaptığı için asenkron (eşzamansız) çalışır, işlemlerin önüne mutlaka <code>await</code> eklenmelidir.</li>
+                            <li><code>NEW</code>: Eklenen veya güncellenmek istenen yeni veriyi temsil eder (INSERT ve UPDATE olaylarında).</li>
+                            <li><code>OLD</code>: Silinen veya güncellenmeden önceki eski veriyi temsil eder (UPDATE ve DELETE olaylarında).</li>
+                            <li>Tetikleyicinin her etkilenen satır için çalışmasını sağlayan <code>FOR EACH ROW</code> ifadesi zorunludur.</li>
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Alt Sekme İçeriği: Hafta 11 -->
-            <div id="note-h11" class="subtab-content" style="display:none;">
-                <h2>Hafta 11: SQLite ile SQL Tabanlı Depolama</h2>
-                <div class="edu-grid">
-                    <div class="box box-lecture">
-                        <h3>📚 SQLite Veritabanı Yapısı</h3>
-                        <p>SQLite, mobil cihazın içinde çalışan dosya tabanlı ve gerçek <strong>ilişkisel (tablo tabanlı)</strong> bir veritabanıdır. AsyncStorage'ın aksine tablolarla ve karmaşık verilerle çalışabilir, performansı çok daha yüksektir.</p>
-                        <p>Projelerimizde <code>expo-sqlite</code> kütüphanesi kullanılır. Temel SQLite metotları:</p>
-                        <ul>
-                            <li><code>openDatabaseSync("tasks.db")</code>: Veritabanını açmak veya yoksa oluşturmak için kullanılır.</li>
-                            <li><code>execSync(...)</code>: <code>CREATE TABLE</code> gibi veritabanı iskeletini ve şemasını kuran SQL komutlarını çalıştırmak için kullanılır.</li>
-                            <li><code>runSync(sorgu, [parametreler])</code>: <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> gibi veriyi doğrudan değiştiren SQL sorgularında tercih edilir.</li>
-                            <li><code>getAllSync(...)</code>: <code>SELECT</code> sorguları sonucunda verileri Javascript dizisi (liste) halinde çekmek için kullanılır.</li>
-                        </ul>
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 AFTER INSERT Sipariş Log Tetikleyicisi</span>
                     </div>
-                    <div class="box box-danger">
-                        <h3>⚠️ SQL Injection Saldırıları ve Korunma</h3>
-                        <p>Kullanıcıdan gelen verilerin doğrudan SQL cümleciğiyle birleştirilmesi güvenlik açığı (SQL Injection) oluşturur. Bunu önlemek için sorgularda parametre gönderilecek yerlere <code>?</code> (soru işareti) sembolü yerleştirilir ve değişkenler dışarıdan bir dizi şeklinde yollanır.</p>
-                    </div>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_ekle
+<span class="kw">AFTER INSERT ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<span class="kw">NEW</span>.musteri, <span class="str">' sipariş oluşturdu. Tutar: '</span>, <span class="kw">NEW</span>.tutar));
+<span class="kw">END</span> //</code></pre>
                 </div>
-            </div>
-
-            <!-- Alt Sekme İçeriği: Hafta 12 -->
-            <div id="note-h12" class="subtab-content" style="display:none;">
-                <h2>Hafta 12: Dinamik Ekranlar, State ve useMemo</h2>
-                <div class="edu-grid">
-                    <div class="box box-lecture">
-                        <h3>📚 State ve Dinamik Listeleme</h3>
-                        <p><strong>State Mantığı:</strong> State, uygulamanın değişebilen anlık verisidir (örneğin görevler listesi). State güncellendiğinde (örneğin <code>setTasks</code> ile) ekran otomatik olarak yeniden render edilir.</p>
-                        <p><strong>Dinamik Listeleme:</strong> Veriler ekrana statik olarak yazılmaz. Bunun yerine <code>FlatList</code> kullanılarak State içerisindeki verilere göre dinamik olarak üretilir.</p>
-                        <p><strong>Immutable Update (Değişmezlik):</strong> Yeni bir görev eklenirken eski dizi doğrudan değiştirilmez (mutasyon engellenir). Bunun yerine <code>[newTask, ...tasks]</code> şeklinde spread operatörüyle eski verilerin yanına yeni veri eklenerek yepyeni bir dizi referansı oluşturulur.</p>
-                    </div>
-                    <div class="box box-tip">
-                        <h3>💡 Arama, Filtreleme ve useMemo Optimizasyonu</h3>
-                        <p>Arama işlemlerinde büyük/küçük harf duyarlılığını ortadan kaldırmak için JavaScript'teki <code>toLowerCase()</code> metodu kullanılırken, verileri koşula göre sınırlandırmak için <code>filter()</code> fonksiyonu kullanılır.</p>
-                        <p><strong>Performans Optimizasyonu:</strong> Arama ve filtreleme gibi ağır işlemlerin ekran her render olduğunda gereksiz yere çalışmasını önlemek için <code>useMemo</code> hook'u kullanılır. Değerleri hafızada önbelleğe alır ve sadece bağımlılık listesi (dependencies) değiştiğinde hesaplama yapar.</p>
-                    </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 AFTER INSERT Kodu Açıklaması</h3>
+                    <p>Bu tetikleyici, <code>Siparisler</code> tablosuna yeni bir sipariş başarıyla eklendikten sonra çalışır:</p>
+                    <ul>
+                        <li><strong>AFTER INSERT ON Siparisler:</strong> Tetikleyicinin <code>Siparisler</code> tablosuna yapılan ekleme (INSERT) işleminden sonra (AFTER) çalışacağını belirtir.</li>
+                        <li><strong>FOR EACH ROW:</strong> Ekleme işleminden etkilenen (eklenen) her bir satır için tetikleyicinin gövdesinin ayrı ayrı çalıştırılmasını sağlar.</li>
+                        <li><strong>NEW.musteri & NEW.tutar:</strong> Yeni eklenen satırdaki müşteri adı ve sipariş tutarı değerlerine <code>NEW</code> öneki vasıtasıyla erişir.</li>
+                    </ul>
                 </div>
-            </div>
 
-            <!-- Alt Sekme İçeriği: Harita ve Web Servisleri -->
-            <div id="note-maps" class="subtab-content" style="display:none;">
-                <h2>🗺️ Harita ve Konum Servisleri (Konum & GPS)</h2>
-                <div class="edu-grid">
-                    <div class="box box-lecture">
-                        <h3>📚 Harita Kullanımı ve react-native-maps</h3>
-                        <p>Uygulamada harita göstermek, işaretlemek ve konum tabanlı servisler için projeye <code>react-native-maps</code> ve <code>expo-location</code> kütüphaneleri kurulur.</p>
-                        <ul>
-                            <li><code>MapView</code>: Haritanın kendisini ekranda gösteren ana temel bileşendir.</li>
-                            <li><code>Marker</code>: Harita üzerinde belirli koordinat noktalarını işaretlemek için kullanılan bileşendir.</li>
-                            <li><code>latitudeDelta</code> ve <code>longitudeDelta</code>: Haritadaki yakınlaştırma (zoom) seviyesini belirleyen parametrelerdir. <strong>Bu değerler küçüldükçe harita yakınlaşır (zoom-in).</strong></li>
-                        </ul>
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 AFTER UPDATE Sipariş Durumu Değişim Tetikleyicisi</span>
                     </div>
-                    <div class="box box-tip">
-                        <h3>💡 GPS Konum Servisleri & Web Servisleri</h3>
-                        <p>Cihazın konumunu alabilmek için yapılması gereken adımlar sırasıyla şöyledir:</p>
-                        <ol style="margin-left: 20px; margin-bottom: 15px;">
-                            <li>İlk yapılması gereken şey, <code>requestForegroundPermissionsAsync()</code> fonksiyonu ile kullanıcıdan konum izni istemektir.</li>
-                            <li>İzin verildikten sonra cihazın anlık GPS koordinatlarını çeken metot <code>getCurrentPositionAsync()</code> metodudur.</li>
-                        </ol>
-                        <p><strong>Web Servisleri:</strong> Uzak sunucudan asenkron veri alışverişi yapmak için JavaScript'in yerleşik <code>fetch()</code> fonksiyonu veya <code>axios</code> paketi kullanılır. Genelde asenkron istekler <code>useEffect</code> içinde konumlandırılır.</p>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_update
+<span class="kw">AFTER UPDATE ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<span class="kw">OLD</span>.durum, <span class="str">' -> '</span>, <span class="kw">NEW</span>.durum, <span class="str">' olarak değişti'</span>));
+<span class="kw">END</span> //</code></pre>
+                </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 AFTER UPDATE Kodu Açıklaması</h3>
+                    <p>Bu tetikleyici, sipariş durumundaki güncellemeleri loglamak için tasarlanmıştır:</p>
+                    <ul>
+                        <li><strong>AFTER UPDATE ON Siparisler:</strong> Siparişler tablosunda bir güncelleme (UPDATE) bittikten sonra çalışır.</li>
+                        <li><strong>OLD.durum & NEW.durum:</strong> Güncelleme öncesi eski durum değerine <code>OLD</code> önekiyle, yeni güncellenen durum değerine ise <code>NEW</code> önekiyle ulaşarak değişim logunu kaydeder.</li>
+                    </ul>
+                </div>
+
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 BEFORE DELETE Sipariş Silinme Tetikleyicisi</span>
                     </div>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_delete
+<span class="kw">BEFORE DELETE ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<span class="kw">OLD</span>.musteri, <span class="str">' siparişi silinmek üzere'</span>));
+<span class="kw">END</span> //</code></pre>
+                </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 BEFORE DELETE Kodu Açıklaması</h3>
+                    <p>Bu tetikleyici, sipariş silinmeden hemen önce çalışarak önlem logu tutar:</p>
+                    <ul>
+                        <li><strong>BEFORE DELETE ON Siparisler:</strong> Kayıt tablodan silinmeden önce (BEFORE) tetiklenir. Bu sayede veri henüz disken silinmeden okunabilir.</li>
+                        <li><strong>OLD.musteri:</strong> Silinecek olan satırın bilgilerine erişmek için <code>OLD</code> öneki kullanılır. Silinen veriler için <code>NEW</code> öneki tanımsızdır.</li>
+                    </ul>
+                </div>
+
+                <div class="code-container" style="margin-top: 30px;">
+                    <div class="code-header">
+                        <span>🔍 BEFORE INSERT Sipariş Tutarı Doğrulama Tetikleyicisi</span>
+                    </div>
+                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_kontrol
+<span class="kw">BEFORE INSERT ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">IF</span> NEW.tutar <= 0 <span class="kw">THEN</span>
+    <span class="kw">SIGNAL SQLSTATE</span> <span class="str">'45000'</span>
+    <span class="kw">SET MESSAGE_TEXT</span> = <span class="str">'Sipariş tutarı negatif olamaz!'</span>;
+  <span class="kw">END IF</span>;
+<span class="kw">END</span> //</code></pre>
+                </div>
+                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
+                    <h3 style="color: #c792ea;">📋 BEFORE INSERT Kodu Açıklaması</h3>
+                    <p>Bu tetikleyici, geçersiz sipariş eklenmesini engelleyen bir veri doğrulama (validation) mekanizmasıdır:</p>
+                    <ul>
+                        <li><strong>BEFORE INSERT ON Siparisler:</strong> Sipariş tablosuna veri yazılmadan hemen önce çalışarak girdiyi denetler.</li>
+                        <li><strong>IF NEW.tutar &lt;= 0 THEN:</strong> Yeni eklenecek olan siparişin tutarının 0 veya negatif olup olmadığını sorgular.</li>
+                        <li><strong>SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = ...:</strong> Eğer koşul sağlanıyorsa (tutar geçersizse), <code>SIGNAL</code> komutuyla kullanıcı tanımlı hata kodu olan <code>'45000'</code> fırlatılır ve işlem tamamen iptal edilerek veritabanı düzeyinde hata döndürülür.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -971,168 +1109,146 @@
         <!-- ================= SEKME: KOD EGZERSİZLERİ ================= -->
         <div id="code-exercises" class="tab-section">
             <h1>💻 Kod Tamamlama Egzersizleri</h1>
-            <p class="subtitle">Aşağıdaki kod bloklarında boş bırakılan alanları doğru kodlarla doldurun!</p>
+            <p class="subtitle">Aşağıdaki SQL kod bloklarında boş bırakılan alanları doğru kodlarla doldurun!</p>
 
             <div class="subtabs">
-                <button class="subtab active" data-code-tab="code-ex-h7">AsyncStorage (Hafta 7)</button>
-                <button class="subtab" data-code-tab="code-ex-h11">SQLite (Hafta 11)</button>
-                <button class="subtab" data-code-tab="code-ex-h12">useMemo (Hafta 12)</button>
-                <button class="subtab" data-code-tab="code-ex-maps">Harita & Web Servisi</button>
+                <button class="subtab active" data-code-tab="code-ex-agg">Aggregate & JOIN (Alıştırma 1)</button>
+                <button class="subtab" data-code-tab="code-ex-sp">Stored Procedure (Alıştırma 2)</button>
+                <button class="subtab" data-code-tab="code-ex-trg1">AFTER INSERT Trigger (Alıştırma 3)</button>
+                <button class="subtab" data-code-tab="code-ex-trg2">AFTER UPDATE Trigger (Alıştırma 4)</button>
+                <button class="subtab" data-code-tab="code-ex-trg3">BEFORE DELETE Trigger (Alıştırma 5)</button>
+                <button class="subtab" data-code-tab="code-ex-trg4">BEFORE INSERT Hata (Alıştırma 6)</button>
             </div>
 
-            <!-- Egzersiz: AsyncStorage -->
-            <div id="code-ex-h7" class="code-exercise-content active">
+            <!-- Egzersiz 1: Aggregate & JOIN -->
+            <div id="code-ex-agg" class="code-exercise-content active">
                 <div class="code-container">
                     <div class="code-header">
-                        <span>AsyncStorage_Exercise.tsx</span>
+                        <span>en_basarili_ogrenci.sql</span>
                     </div>
-                    <pre><code><span class="kw">import</span> AsyncStorage <span class="kw">from</span> <span class="str">"@react-native-async-storage/async-storage"</span>;
+                    <pre><code><input type="text" class="code-input" data-ans="SELECT" placeholder="..." style="width: 80px;"> O.ad, <input type="text" class="code-input" data-ans="AVG" placeholder="..." style="width: 60px;">(N.notu) <span class="kw">AS</span> ortalama
+<span class="kw">FROM</span> Ogrenciler O
+<input type="text" class="code-input" data-ans="JOIN" placeholder="..." style="width: 70px;"> Notlar N <span class="kw">ON</span> O.ogrNo = N.ogrNo
+<input type="text" class="code-input" data-ans="GROUP BY" placeholder="..." style="width: 100px;"> O.ad
+<input type="text" class="code-input" data-ans="ORDER BY" placeholder="..." style="width: 100px;"> ortalama <span class="kw">DESC</span>
+<input type="text" class="code-input" data-ans="LIMIT" placeholder="..." style="width: 70px;"> 1;</code></pre>
+                    <div class="exercise-actions">
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-agg">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-agg">Cevabı Göster</button>
+                    </div>
+                    <div class="exercise-feedback"></div>
+                </div>
+            </div>
 
-<span class="kw">const</span> loadNotes = <span class="kw">async</span> () => {
-  <span class="cmt">// Veritabanından veriyi getirelim</span>
-  <span class="kw">const</span> data = <span class="kw">await</span> AsyncStorage.<input type="text" class="code-input" data-ans="getItem" placeholder="..." style="width: 100px;">(<span class="str">"NOTES"</span>);
+            <!-- Egzersiz 2: Stored Procedure -->
+            <div id="code-ex-sp" class="code-exercise-content" style="display:none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>maas_guncelleme.sql</span>
+                    </div>
+                    <pre><code><input type="text" class="code-input" data-ans="DELIMITER" placeholder="..." style="width: 110px;"> //
+<input type="text" class="code-input" data-ans="CREATE PROCEDURE" placeholder="..." style="width: 160px;"> maas_guncelle_v2(<input type="text" class="code-input" data-ans="IN" placeholder="..." style="width: 40px;"> pid INT, <input type="text" class="code-input" data-ans="IN" placeholder="..." style="width: 40px;"> artis INT)
+<span class="kw">BEGIN</span>
+  <input type="text" class="code-input" data-ans="DECLARE" placeholder="..." style="width: 90px;"> mevcut_maas INT;
   
-  <span class="kw">if</span> (data !== <span class="kw">null</span>) {
-    <span class="cmt">// Metin olarak gelen veriyi JSON objesine parse edelim</span>
-    setNotes(<input type="text" class="code-input" data-ans="JSON.parse" placeholder="..." style="width: 110px;">(data));
-  }
-};
-
-<span class="kw">const</span> saveNotes = <span class="kw">async</span> (newNotes) => {
-  <span class="cmt">// Yeni veriyi kaydetmeden önce string'e dönüştürelim</span>
-  <span class="kw">await</span> AsyncStorage.<input type="text" class="code-input" data-ans="setItem" placeholder="..." style="width: 100px;">(<span class="str">"NOTES"</span>, <input type="text" class="code-input" data-ans="JSON.stringify" placeholder="..." style="width: 130px;">(newNotes));
-  setNotes(newNotes);
-};
-
-<span class="kw">const</span> addNote = () => {
-  <span class="cmt">// Listeye yeni bir eleman eklerken spread operatörü kullanalım</span>
-  <span class="kw">const</span> newNotes = [<input type="text" class="code-input" data-ans="...notes" placeholder="..." style="width: 110px;">, { id: Date.now().toString(), text: note }];
-  saveNotes(newNotes);
-};</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-h7">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-h7">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
-
-            <!-- Egzersiz: SQLite -->
-            <div id="code-ex-h11" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>SQLite_Exercise.tsx</span>
-                    </div>
-                    <pre><code><span class="kw">import</span> * <span class="kw">as</span> SQLite <span class="kw">from</span> <span class="str">"expo-sqlite"</span>;
-
-<span class="cmt">// Veritabanını açalım</span>
-<span class="kw">const</span> db = SQLite.<input type="text" class="code-input" data-ans="openDatabaseSync" placeholder="..." style="width: 160px;">(<span class="str">"tasks.db"</span>);
-
-<span class="cmt">// Tablo oluşturma komutunu çalıştıralım</span>
-useEffect(() => {
-  db.<input type="text" class="code-input" data-ans="execSync" placeholder="..." style="width: 110px;">(`
-    CREATE TABLE IF NOT EXISTS tasks (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      text TEXT,
-      completed INTEGER
-    );
-  `);
-  loadTasks();
-}, []);
-
-<span class="kw">const</span> loadTasks = () => {
-  <span class="cmt">// Tüm verileri çekelim</span>
-  <span class="kw">const</span> result = db.<input type="text" class="code-input" data-ans="getAllSync" placeholder="..." style="width: 120px;">(<span class="str">"SELECT * FROM tasks"</span>);
-  setTasks(result);
-};
-
-<span class="kw">const</span> addTask = (taskText) => {
-  <span class="cmt">// SQL injection korumalı veri ekleme</span>
-  db.<input type="text" class="code-input" data-ans="runSync" placeholder="..." style="width: 100px;">(
-    <span class="str">"INSERT INTO tasks (text, completed) VALUES (<input type="text" class="code-input" data-ans="?, ?" placeholder="..." style="width: 70px;">)"</span>,
-    [taskText, 0]
-  );
-  loadTasks();
-};</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-h11">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-h11">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
-
-            <!-- Egzersiz: useMemo -->
-            <div id="code-ex-h12" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Performance_useMemo.tsx</span>
-                    </div>
-                    <pre><code><span class="kw">import</span> { <input type="text" class="code-input" data-ans="useMemo" placeholder="..." style="width: 100px;">, useState } <span class="kw">from</span> <span class="str">"react"</span>;
-
-<span class="cmt">// Arama ve filtreleme işlemini önbelleğe alalım</span>
-<span class="kw">const</span> filteredTasks = <input type="text" class="code-input" data-ans="useMemo" placeholder="..." style="width: 100px;">(() => {
-  <span class="kw">let</span> result = tasks;
-  <span class="kw">if</span> (filter === <span class="str">"Aktif"</span>) {
-    result = result.filter((item) => !item.completed);
-  }
-  <span class="kw">if</span> (searchText.trim() !== <span class="str">""</span>) {
-    result = result.filter((item) =>
-      item.title.<input type="text" class="code-input" data-ans="toLowerCase" placeholder="..." style="width: 120px;">().includes(searchText.toLowerCase())
-    );
-  }
-  <span class="kw">return</span> result;
-}, [<input type="text" class="code-input" data-ans="tasks, filter, searchText" placeholder="..." style="width: 200px;">]);</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-h12">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-h12">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
-
-            <!-- Egzersiz: Haritalar -->
-            <div id="code-ex-maps" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Maps_Webservice.tsx</span>
-                    </div>
-                    <pre><code><span class="kw">import</span> <input type="text" class="code-input" data-ans="MapView" placeholder="..." style="width: 90px;">, { <input type="text" class="code-input" data-ans="Marker" placeholder="..." style="width: 80px;"> } <span class="kw">from</span> <span class="str">"react-native-maps"</span>;
-<span class="kw">import</span> { useEffect, useState } <span class="kw">from</span> <span class="str">"react"</span>;
-
-<span class="cmt">// API'den veri çeken asenkron web servis isteği</span>
-useEffect(() => {
-  <span class="kw">const</span> fetchLocations = <span class="kw">async</span> () => {
-    <span class="kw">const</span> response = <span class="kw">await</span> <input type="text" class="code-input" data-ans="fetch" placeholder="..." style="width: 90px;">(<span class="str">"https://api.myjson.com/locations"</span>);
-    <span class="kw">const</span> data = <span class="kw">await</span> response.json();
-    setLocations(data);
-  };
+  <span class="kw">SELECT</span> maas <input type="text" class="code-input" data-ans="INTO" placeholder="..." style="width: 70px;"> mevcut_maas <span class="kw">FROM</span> Personel <span class="kw">WHERE</span> id = pid;
   
-  fetchLocations();
-}, []);
-
-<span class="kw">return</span> (
-  <span class="tag">&lt;MapView</span>
-    <span class="prop">style</span>={styles.map}
-    <span class="prop">initialRegion</span>={{
-      <span class="prop">latitude</span>: 39.9,
-      <span class="prop">longitude</span>: 32.8,
-      <span class="prop">latitudeDelta</span>: 0.0922,
-      <span class="prop">longitudeDelta</span>: <input type="text" class="code-input" data-ans="0.0421" placeholder="..." style="width: 80px;">,
-    }}
-  <span class="tag">&gt;</span>
-    {locations.map((loc) => (
-      <span class="tag">&lt;Marker</span>
-        <span class="prop">key</span>={loc.id}
-        <span class="prop">coordinate</span>={{ latitude: loc.lat, longitude: loc.lng }}
-        <span class="prop">title</span>={loc.name}
-      <span class="tag">/&gt;</span>
-    ))}
-  <span class="tag">&lt;/MapView&gt;</span>
-);</code></pre>
+  <input type="text" class="code-input" data-ans="IF" placeholder="..." style="width: 40px;"> mevcut_maas <span class="kw">IS NULL THEN</span>
+    <span class="kw">INSERT INTO</span> Loglar (mesaj) <span class="kw">VALUES</span> (CONCAT(<span class="str">'HATA: Personel bulunamadı'</span>));
+  <span class="kw">ELSE</span>
+    <input type="text" class="code-input" data-ans="UPDATE" placeholder="..." style="width: 80px;"> Personel <input type="text" class="code-input" data-ans="SET" placeholder="..." style="width: 50px;"> maas = maas + artis <span class="kw">WHERE</span> id = pid;
+  <input type="text" class="code-input" data-ans="END IF" placeholder="..." style="width: 80px;">;
+<span class="kw">END</span> //
+<span class="kw">DELIMITER</span> ;</code></pre>
                     <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-maps">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-maps">Cevabı Göster</button>
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-sp">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-sp">Cevabı Göster</button>
+                    </div>
+                    <div class="exercise-feedback"></div>
+                </div>
+            </div>
+
+            <!-- Egzersiz 3: AFTER INSERT Trigger -->
+            <div id="code-ex-trg1" class="code-exercise-content" style="display:none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>trg_siparis_ekle.sql</span>
+                    </div>
+                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_ekle
+<input type="text" class="code-input" data-ans="AFTER INSERT" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
+<input type="text" class="code-input" data-ans="FOR EACH ROW" placeholder="..." style="width: 130px;">
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.musteri, <span class="str">' sipariş oluşturdu. Tutar: '</span>, <input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.tutar));
+<span class="kw">END</span> //</code></pre>
+                    <div class="exercise-actions">
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg1">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg1">Cevabı Göster</button>
+                    </div>
+                    <div class="exercise-feedback"></div>
+                </div>
+            </div>
+
+            <!-- Egzersiz 4: AFTER UPDATE Trigger -->
+            <div id="code-ex-trg2" class="code-exercise-content" style="display:none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>trg_siparis_update.sql</span>
+                    </div>
+                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_update
+<input type="text" class="code-input" data-ans="AFTER UPDATE" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="OLD" placeholder="..." style="width: 50px;">.durum, <span class="str">' -> '</span>, <input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.durum, <span class="str">' olarak değişti'</span>));
+<span class="kw">END</span> //</code></pre>
+                    <div class="exercise-actions">
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg2">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg2">Cevabı Göster</button>
+                    </div>
+                    <div class="exercise-feedback"></div>
+                </div>
+            </div>
+
+            <!-- Egzersiz 5: BEFORE DELETE Trigger -->
+            <div id="code-ex-trg3" class="code-exercise-content" style="display:none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>trg_siparis_delete.sql</span>
+                    </div>
+                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_delete
+<input type="text" class="code-input" data-ans="BEFORE DELETE" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <span class="kw">INSERT INTO</span> Loglar(mesaj)
+  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="OLD" placeholder="..." style="width: 50px;">.musteri, <span class="str">' siparişi silinmek üzere'</span>));
+<span class="kw">END</span> //</code></pre>
+                    <div class="exercise-actions">
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg3">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg3">Cevabı Göster</button>
+                    </div>
+                    <div class="exercise-feedback"></div>
+                </div>
+            </div>
+
+            <!-- Egzersiz 6: BEFORE INSERT Hata -->
+            <div id="code-ex-trg4" class="code-exercise-content" style="display:none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>trg_kontrol.sql</span>
+                    </div>
+                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_kontrol
+<input type="text" class="code-input" data-ans="BEFORE INSERT" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
+<span class="kw">FOR EACH ROW</span>
+<span class="kw">BEGIN</span>
+  <input type="text" class="code-input" data-ans="IF" placeholder="..." style="width: 40px;"> NEW.tutar <= 0 <span class="kw">THEN</span>
+    <input type="text" class="code-input" data-ans="SIGNAL SQLSTATE" placeholder="..." style="width: 160px;"> <span class="str">'45000'</span>
+    <input type="text" class="code-input" data-ans="SET MESSAGE_TEXT" placeholder="..." style="width: 160px;"> = <span class="str">'Sipariş tutarı negatif olamaz!'</span>;
+  <input type="text" class="code-input" data-ans="END IF" placeholder="..." style="width: 80px;">;
+<span class="kw">END</span> //</code></pre>
+                    <div class="exercise-actions">
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg4">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg4">Cevabı Göster</button>
                     </div>
                     <div class="exercise-feedback"></div>
                 </div>
@@ -1146,55 +1262,78 @@ useEffect(() => {
 
             <!-- Soru 1 -->
             <div class="conceptual-card" id="q1">
-                <h3><span>Soru 1 - AsyncStorage Depolama Sınırı</span> <span class="quiz-badge">Hafta 7</span></h3>
+                <h3><span>Soru 1 - Kayıtları Gruplama ve Filtreleme</span> <span class="quiz-badge">Aggregate</span></h3>
                 <div class="conceptual-question">
-                    AsyncStorage telefonda yerel olarak veri tutmak için sadece veri türü olarak 
-                    <input type="text" class="conceptual-input" data-ans="string" placeholder="..."> kabul eder. Objeleri kaydetmek için onları metne çevirmeliyiz.
+                    Aynı değerlere sahip kayıtları gruplamak için 
+                    <input type="text" class="conceptual-input" data-ans="GROUP BY" placeholder="...">
+                    kullanılırken, bu grupları filtrelemek amacıyla
+                    <input type="text" class="conceptual-input" data-ans="HAVING" placeholder="...">
+                    kelimesinden yararlanılır.
                 </div>
-                <div class="hint-text">İpucu: string / metin</div>
+                <div class="hint-text">İpucu: GROUP BY / HAVING</div>
             </div>
 
             <!-- Soru 2 -->
             <div class="conceptual-card" id="q2">
-                <h3><span>Soru 2 - SQL Injection Engelleme</span> <span class="quiz-badge">Hafta 11</span></h3>
+                <h3><span>Soru 2 - Saklı Yordam Parametreleri</span> <span class="quiz-badge">Procedure</span></h3>
                 <div class="conceptual-question">
-                    SQLite sorgularına dışarıdan gelen kullanıcı verilerini doğrudan sokmayıp filtrelemek için sorgu cümlesinde 
-                    <input type="text" class="conceptual-input" data-ans="?" placeholder="..."> sembolü kullanılır.
+                    Saklı yordamın dışarıdan girdi almasını sağlayan yön türü 
+                    <input type="text" class="conceptual-input" data-ans="IN" placeholder="...">
+                    iken, yordam içinden dışarıya sonuç döndürmeye yarayan parametre türü ise
+                    <input type="text" class="conceptual-input" data-ans="OUT" placeholder="...">
+                    olarak tanımlanır.
                 </div>
-                <div class="hint-text">İpucu: ?</div>
+                <div class="hint-text">İpucu: IN / OUT</div>
             </div>
 
             <!-- Soru 3 -->
             <div class="conceptual-card" id="q3">
-                <h3><span>Soru 3 - Performans Optimizasyonu</span> <span class="quiz-badge">Hafta 12</span></h3>
+                <h3><span>Soru 3 - Değişkene Veri Aktarma</span> <span class="quiz-badge">Procedure</span></h3>
                 <div class="conceptual-question">
-                    Arama ve filtreleme gibi pahalı matematiksel işlemleri önbelleğe alıp gereksiz arayüz kasmalarını engellemek için 
-                    <input type="text" class="conceptual-input" data-ans="useMemo" placeholder="..."> hook'u kullanılır.
+                    Saklı yordam içinde SELECT ile çekilen tablo verisini yerel bir değişkene atamak için SELECT ile birlikte
+                    <input type="text" class="conceptual-input" data-ans="INTO" placeholder="...">
+                    kelimesi kullanılır. (Örn: SELECT maas INTO mevcut_maas)
                 </div>
-                <div class="hint-text">İpucu: useMemo</div>
+                <div class="hint-text">İpucu: INTO</div>
             </div>
 
             <!-- Soru 4 -->
             <div class="conceptual-card" id="q4">
-                <h3><span>Soru 4 - Harita ve İşaretçiler</span> <span class="quiz-badge">Harita & Web</span></h3>
+                <h3><span>Soru 4 - Satır Bazlı Tetiklenme</span> <span class="quiz-badge">Triggers</span></h3>
                 <div class="conceptual-question">
-                    Haritada belirli bir konumu temsil eden ve haritanın üstüne eklenen kırmızı iğne/ikon görseline 
-                    <input type="text" class="conceptual-input" data-ans="Marker" placeholder="..."> denir.
+                    Bir tetikleyicinin (Trigger) olaydan etkilenen her bir satır için ayrı ayrı çalıştırılmasını zorunlu kılan komut ifadesi
+                    <input type="text" class="conceptual-input" data-ans="FOR EACH ROW" placeholder="...">
+                    blok yapısıdır.
                 </div>
-                <div class="hint-text">İpucu: Marker</div>
+                <div class="hint-text">İpucu: FOR EACH ROW</div>
             </div>
 
             <!-- Soru 5 -->
             <div class="conceptual-card" id="q5">
-                <h3><span>Soru 5 - Büyük-Küçük Harf Standardı</span> <span class="quiz-badge">Hafta 12</span></h3>
+                <h3><span>Soru 5 - Eski ve Yeni Veri Önekleri</span> <span class="quiz-badge">Triggers</span></h3>
                 <div class="conceptual-question">
-                    Kullanıcının girdiği arama anahtarının büyük-küçük harfe takılmadan arama yapabilmesi için her iki metni de 
-                    <input type="text" class="conceptual-input" data-ans="toLowerCase" placeholder="..."> metoduyla küçültmeliyiz.
+                    UPDATE tetikleyicisinde, sütunun güncellenmeden önceki eski haline
+                    <input type="text" class="conceptual-input" data-ans="OLD" placeholder="...">
+                    önekli değişkenle, güncellenen yeni haline ise
+                    <input type="text" class="conceptual-input" data-ans="NEW" placeholder="...">
+                    önekiyle erişilir.
                 </div>
-                <div class="hint-text">İpucu: toLowerCase</div>
+                <div class="hint-text">İpucu: OLD / NEW</div>
             </div>
 
-            <div class="exercise-actions" style="background-color: var(--bg-card); border-radius:12px; border: 1px solid var(--border);">
+            <!-- Soru 6 -->
+            <div class="conceptual-card" id="q6">
+                <h3><span>Soru 6 - Tetikleyicide Hata Fırlatma</span> <span class="quiz-badge">Triggers</span></h3>
+                <div class="conceptual-question">
+                    Trigger içerisinde koşullara uymayan durumlarda işlemi durdurup veritabanı düzeyinde özel hata fırlatmak için
+                    <input type="text" class="conceptual-input" data-ans="SIGNAL SQLSTATE" placeholder="...">
+                    kelime grubu ve '45000' durum kodu kullanılır.
+                </div>
+                <div class="hint-text">İpucu: SIGNAL SQLSTATE</div>
+            </div>
+
+            <div class="exercise-actions"
+                style="background-color: var(--bg-card); border-radius:12px; border: 1px solid var(--border);">
                 <button class="btn btn-success" id="btn-check-conceptual">Tümünü Kontrol Et</button>
                 <button class="btn btn-info" id="btn-toggle-conceptual">Cevapları Göster</button>
                 <button class="btn btn-secondary" id="btn-hints-conceptual">İpuçlarını Aç/Kapat</button>
@@ -1213,11 +1352,10 @@ useEffect(() => {
 
             const targetTab = document.getElementById(tabId);
             if (targetTab) targetTab.classList.add('active');
-            
+
             if (clickedLink) {
                 clickedLink.classList.add('active');
             } else {
-                // Varsayılan ilk yükleme durumunda
                 const navLinks = document.querySelectorAll('.nav-link');
                 const matchedLink = Array.from(navLinks).find(link => link.getAttribute('data-tab') === tabId);
                 if (matchedLink) matchedLink.classList.add('active');
@@ -1249,10 +1387,9 @@ useEffect(() => {
         }
 
         // --- SKOR VE İLERLEME PARAMETRELERİ ---
-        const totalPoints = 23; // Kod Egzersizleri: 5(h7) + 5(h11) + 4(h12) + 4(maps) = 18. Kavramsal: 5. Toplam = 23.
+        const totalPoints = 43; // 34 kod boşluğu + 9 kavramsal boşluk = 43 puan.
         let userAnswers = {};
 
-        // Kullanıcının daha önceki doğru cevaplarını geri getir
         function restoreAnswers() {
             // Kod Egzersizleri
             document.querySelectorAll('.code-input').forEach((input, index) => {
@@ -1303,7 +1440,7 @@ useEffect(() => {
             if (!container) return;
             const inputs = container.querySelectorAll('.code-input');
             const feedback = container.querySelector('.exercise-feedback');
-            
+
             let allCorrect = true;
 
             inputs.forEach((input) => {
@@ -1322,17 +1459,6 @@ useEffect(() => {
                 let isCorrect = false;
                 if (userVal === expectedVal) {
                     isCorrect = true;
-                } else if (expectedVal === 'tasks,filter,searchtext') {
-                    // Bağımlılık dizisinde sıralama farklılıklarını esnetelim
-                    const userSplit = userVal.split(',');
-                    if (userSplit.includes('tasks') && userSplit.includes('filter') && userSplit.includes('searchtext')) {
-                        isCorrect = true;
-                    }
-                } else if (expectedVal === '?,?') {
-                    // Soru işareti sırası
-                    if (userVal === '?,?' || userVal === '?') {
-                        isCorrect = true;
-                    }
                 }
 
                 if (isCorrect) {
@@ -1365,7 +1491,7 @@ useEffect(() => {
             const container = document.getElementById(containerId);
             if (!container || !btn) return;
             const inputs = container.querySelectorAll('.code-input');
-            
+
             if (btn.innerText === "Cevabı Göster") {
                 inputs.forEach((input) => {
                     const index = Array.from(document.querySelectorAll('.code-input')).indexOf(input);
@@ -1373,7 +1499,7 @@ useEffect(() => {
                     if (!userAnswers[key]) {
                         tempUserInputs[key] = input.value;
                     }
-                    
+
                     input.value = input.getAttribute('data-ans');
                     input.classList.remove('incorrect');
                     input.classList.add('correct');
@@ -1386,7 +1512,7 @@ useEffect(() => {
                 inputs.forEach((input) => {
                     const index = Array.from(document.querySelectorAll('.code-input')).indexOf(input);
                     const key = `code_input_${index}`;
-                    
+
                     if (userAnswers[key]) {
                         input.value = input.getAttribute('data-ans');
                         input.classList.add('correct');
@@ -1420,13 +1546,11 @@ useEffect(() => {
                     return;
                 }
 
-                const userVal = input.value.trim().toLowerCase();
-                const expectedVal = input.getAttribute('data-ans').toLowerCase();
+                const userVal = input.value.trim().toLowerCase().replace(/\s+/g, '');
+                const expectedVal = input.getAttribute('data-ans').toLowerCase().replace(/\s+/g, '');
 
                 let isCorrect = false;
                 if (userVal === expectedVal) {
-                    isCorrect = true;
-                } else if (expectedVal === 'string' && (userVal === 'metin' || userVal === 'text')) {
                     isCorrect = true;
                 }
 
@@ -1457,7 +1581,7 @@ useEffect(() => {
         function toggleConceptualAnswers(btn) {
             if (!btn) return;
             const inputs = document.querySelectorAll('.conceptual-input');
-            
+
             if (btn.innerText === "Cevapları Göster") {
                 inputs.forEach((input) => {
                     const index = Array.from(inputs).indexOf(input);
@@ -1465,7 +1589,7 @@ useEffect(() => {
                     if (!userAnswers[key]) {
                         tempUserInputs[key] = input.value;
                     }
-                    
+
                     input.value = input.getAttribute('data-ans');
                     input.classList.remove('incorrect');
                     input.classList.add('correct');
@@ -1478,7 +1602,7 @@ useEffect(() => {
                 inputs.forEach((input) => {
                     const index = Array.from(inputs).indexOf(input);
                     const key = `conceptual_input_${index}`;
-                    
+
                     if (userAnswers[key]) {
                         input.value = input.getAttribute('data-ans');
                         input.classList.add('correct');
@@ -1522,7 +1646,7 @@ useEffect(() => {
                 const touchEndY = e.changedTouches[0].clientY;
                 const diffX = Math.abs(touchEndX - touchStartX);
                 const diffY = Math.abs(touchEndY - touchStartY);
-                
+
                 // Kullanıcı sadece dokunduysa (kaydırma yapmadıysa, tolerans: 10px)
                 if (diffX < 10 && diffY < 10) {
                     e.preventDefault();
@@ -1538,7 +1662,6 @@ useEffect(() => {
 
         // Sayfa yüklendiğinde ve olay dinleyicileri eklendiğinde çalıştır
         window.addEventListener('DOMContentLoaded', () => {
-            // Yenilemede sıfırlanması istendiği için localStorage yüklemesi tamamen kaldırıldı
             updateScore();
 
             // Navbar Sekme Değiştirme Dinamik Event Tanımlama
