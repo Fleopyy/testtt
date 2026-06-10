@@ -4,34 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veritabanı Yönetimi Etkileşimli Öğrenim Portalı</title>
+    <title>C# İleri Seviye Programlama & EF Core Etkileşimli Öğrenim Portalı</title>
     <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-dark: #080a11;
-            --bg-panel: #111424;
-            --bg-card: #171c30;
-            --bg-code: #0b0d16;
-            --text-main: #9aa0c2;
+            --bg-dark: #080911;
+            --bg-panel: #0e1122;
+            --bg-card: #151930;
+            --bg-code: #070914;
+            --text-main: #a2a8cc;
             --text-title: #ffffff;
-            --accent: #5e81f4;
-            --accent-hover: #4a6ee0;
-            --accent-glow: rgba(94, 129, 244, 0.4);
-            --border: #232a45;
-            --success: #4cd964;
-            --success-bg: rgba(76, 217, 100, 0.1);
-            --warning: #ffcc00;
-            --warning-bg: rgba(255, 204, 0, 0.1);
-            --danger: #ff3b30;
-            --danger-bg: rgba(255, 59, 48, 0.1);
-            --purple: #af52de;
-            --purple-bg: rgba(175, 82, 222, 0.1);
+            --accent: #a855f7; /* C# Purple / Violet Accent */
+            --accent-hover: #9333ea;
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --border: #22294c;
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.1);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --purple: #d8b4fe;
+            --purple-bg: rgba(216, 180, 254, 0.1);
+            --blue: #3b82f6;
+            --blue-bg: rgba(59, 130, 246, 0.1);
         }
 
         * {
@@ -52,7 +52,7 @@
 
         /* Modern Yatay Menü (Navbar) */
         .navbar {
-            background-color: rgba(10, 12, 22, 0.85);
+            background-color: rgba(8, 9, 17, 0.9);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
@@ -64,6 +64,7 @@
             z-index: 1000;
             position: sticky;
             top: 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-brand {
@@ -73,30 +74,33 @@
         }
 
         .nav-brand-logo {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
-            width: 32px;
-            height: 32px;
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             box-shadow: 0 0 12px var(--accent-glow);
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
         }
 
         .nav-brand h2 {
             font-family: 'Outfit', sans-serif;
             color: var(--text-title);
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         .nav-brand span {
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            font-size: 0.72rem;
+            background-color: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #d8b4fe;
+            font-size: 0.7rem;
             font-weight: 700;
             padding: 2px 8px;
             border-radius: 4px;
@@ -149,9 +153,10 @@
         }
 
         .nav-link.active {
-            background-color: rgba(94, 129, 244, 0.08);
-            border-color: rgba(94, 129, 244, 0.2);
+            background-color: rgba(168, 85, 247, 0.1);
+            border-color: rgba(168, 85, 247, 0.2);
             color: white;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
         }
 
         .nav-link.active svg {
@@ -170,14 +175,14 @@
             font-weight: 700;
             color: white;
             font-family: 'Outfit', sans-serif;
-            background-color: rgba(94, 129, 244, 0.1);
+            background-color: rgba(168, 85, 247, 0.1);
             padding: 4px 10px;
             border-radius: 6px;
-            border: 1px solid rgba(94, 129, 244, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
 
         .nav-progress-bar-bg {
-            width: 110px;
+            width: 120px;
             height: 6px;
             background-color: var(--border);
             border-radius: 4px;
@@ -187,7 +192,7 @@
         .nav-progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--purple) 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, #6366f1 100%);
             transition: width 0.4s ease;
         }
 
@@ -196,13 +201,13 @@
             flex: 1;
             padding: 40px;
             overflow-y: auto;
-            background: radial-gradient(circle at top, rgba(94, 129, 244, 0.02), transparent 60%);
+            background: radial-gradient(circle at top, rgba(168, 85, 247, 0.03), transparent 60%);
             scroll-behavior: smooth;
         }
 
         .tab-section {
             display: none;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -230,16 +235,17 @@
             margin-bottom: 25px;
             border: 1px solid transparent;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            line-height: 1.6;
         }
 
         .alert-card-danger {
             background-color: var(--danger-bg);
-            border-color: rgba(255, 59, 48, 0.2);
-            color: #ff8882;
+            border-color: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
         }
 
         .alert-card-danger h3 {
-            color: #ff453a;
+            color: var(--danger);
             margin-top: 0;
             margin-bottom: 8px;
             font-family: 'Outfit', sans-serif;
@@ -251,12 +257,12 @@
 
         .alert-card-success {
             background-color: var(--success-bg);
-            border-color: rgba(76, 217, 100, 0.2);
-            color: #a3e8b0;
+            border-color: rgba(16, 185, 129, 0.2);
+            color: #a7f3d0;
         }
 
         .alert-card-success h3 {
-            color: #30d158;
+            color: var(--success);
             margin-top: 0;
             margin-bottom: 8px;
             font-family: 'Outfit', sans-serif;
@@ -280,7 +286,7 @@
             background-color: var(--bg-card);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -322,6 +328,7 @@
             border-left: 5px solid transparent;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             transition: transform 0.2s ease;
+            line-height: 1.6;
         }
 
         .box:hover {
@@ -343,7 +350,7 @@
         }
 
         .box-lecture h3 {
-            color: #82aaff;
+            color: #d8b4fe;
         }
 
         .box-tip {
@@ -360,6 +367,14 @@
 
         .box-danger h3 {
             color: var(--danger);
+        }
+
+        .box-blue {
+            border-left-color: var(--blue);
+        }
+
+        .box-blue h3 {
+            color: #93c5fd;
         }
 
         /* Başlıklar & Tipografi */
@@ -412,14 +427,14 @@
 
         code {
             font-family: 'Consolas', 'Courier New', monospace;
-            background-color: rgba(94, 129, 244, 0.1);
-            color: #82aaff;
+            background-color: rgba(168, 85, 247, 0.15);
+            color: #d8b4fe;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 0.9em;
         }
 
-        /* Kod Blokları & İç Boşluk Doldurma Alanları */
+        /* Kod Blokları */
         .code-container {
             background: var(--bg-code);
             border: 1px solid var(--border);
@@ -436,7 +451,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
-            color: #8f9bb3;
+            color: #a2a8cc;
             font-family: monospace;
             font-size: 0.9rem;
         }
@@ -447,15 +462,15 @@
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 0.92rem;
             line-height: 1.8;
-            color: #e4ebf5;
-            tab-size: 2;
+            color: #e2e8f0;
+            tab-size: 4;
         }
 
-        /* Kod Egzersiz Input (Gizlenmiş Placeholder Değerleri) */
+        /* Kod Egzersiz Input */
         .code-input {
-            background-color: #1e2236;
+            background-color: #1a1528;
             border: 1px solid var(--border);
-            color: #ffcb6b;
+            color: #fb923c;
             font-family: 'Consolas', 'Courier New', monospace;
             font-size: 0.92rem;
             font-weight: 700;
@@ -470,19 +485,25 @@
 
         .code-input:focus {
             border-color: var(--accent);
-            background-color: var(--bg-card);
+            background-color: #241d3a;
         }
 
         .code-input.correct {
             border-color: var(--success);
             color: var(--success);
-            background-color: rgba(76, 217, 100, 0.05);
+            background-color: rgba(16, 185, 129, 0.05);
         }
 
         .code-input.incorrect {
             border-color: var(--danger);
             color: var(--danger);
-            background-color: rgba(255, 59, 48, 0.05);
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .code-input.case-error {
+            border-color: var(--warning);
+            color: var(--warning);
+            background-color: rgba(245, 158, 11, 0.05);
         }
 
         /* Egzersiz Kontrol Araçları */
@@ -506,11 +527,13 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            outline: none;
         }
 
         .btn-primary {
             background-color: var(--accent);
             color: white;
+            box-shadow: 0 2px 8px var(--accent-glow);
         }
 
         .btn-primary:hover {
@@ -531,41 +554,48 @@
 
         .btn-success {
             background-color: var(--success);
-            color: var(--bg-dark);
+            color: #080911;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
 
         .btn-success:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .btn-info {
-            background-color: var(--purple);
+            background-color: #8b5cf6;
             color: white;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
         }
 
         .btn-info:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .exercise-feedback {
             margin-top: 10px;
-            padding: 10px 15px;
+            padding: 12px 18px;
             border-radius: 6px;
             font-size: 0.88rem;
             font-weight: 600;
             display: none;
+            line-height: 1.4;
         }
 
         .exercise-feedback.success {
             display: block;
             background-color: var(--success-bg);
             color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .exercise-feedback.error {
             display: block;
             background-color: var(--danger-bg);
             color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
         }
 
         /* Kavramsal Soru Kartları */
@@ -585,10 +615,22 @@
             margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-badge {
+            background-color: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #d8b4fe;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
         }
 
         .conceptual-question {
-            line-height: 2;
+            line-height: 2.2;
             font-size: 0.98rem;
             color: var(--text-title);
         }
@@ -596,10 +638,11 @@
         .conceptual-input {
             background-color: var(--bg-dark);
             border: 1px solid var(--border);
-            color: white;
+            color: #fb923c;
             padding: 3px 10px;
             border-radius: 6px;
             font-weight: 700;
+            font-family: 'Consolas', 'Courier New', monospace;
             width: 140px;
             text-align: center;
             outline: none;
@@ -614,49 +657,39 @@
         .conceptual-input.correct {
             border-color: var(--success);
             color: var(--success);
-            background-color: rgba(76, 217, 100, 0.05);
+            background-color: rgba(16, 185, 129, 0.05);
         }
 
         .conceptual-input.incorrect {
             border-color: var(--danger);
             color: var(--danger);
-            background-color: rgba(255, 59, 48, 0.05);
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .conceptual-input.case-error {
+            border-color: var(--warning);
+            color: var(--warning);
+            background-color: rgba(245, 158, 11, 0.05);
         }
 
         .hint-text {
             color: var(--warning);
             font-size: 0.85rem;
-            margin-top: 10px;
+            margin-top: 12px;
             font-style: italic;
             display: none;
+            background: rgba(245, 158, 11, 0.05);
+            padding: 6px 12px;
+            border-radius: 4px;
+            border-left: 3px solid var(--warning);
         }
 
-        /* Syntax colors */
-        .kw {
-            color: #f07178; /* Red/Rose keywords */
-            font-weight: 600;
-        }
-
-        .fn {
-            color: #82aaff; /* Blue functions */
-        }
-
-        .str {
-            color: #c3e88d; /* Green strings */
-        }
-
-        .tag {
-            color: #f07178;
-        }
-
-        .cmt {
-            color: #676e95;
-            font-style: italic;
-        }
-
-        .prop {
-            color: #ffcb6b;
-        }
+        /* Syntax colors (C# theme) */
+        .kw { color: #f472b6; font-weight: 600; } /* Keywords: abstract, class, override, interface, using */
+        .fn { color: #38bdf8; } /* Functions/Methods: WriteLine, Gonder, SaveChanges, ToList */
+        .str { color: #34d399; } /* Strings: "IT", "Vadeli Hesap" */
+        .type { color: #fb923c; } /* Types/Classes: Hesap, VadeliHesap, DbSet, DbContext, Ogrenci, int, decimal */
+        .cmt { color: #6b7280; font-style: italic; } /* Comments: // ... */
 
         /* --- Mobil Duyarlılık (Responsive) --- */
         @media (max-width: 768px) {
@@ -764,7 +797,7 @@
             .code-input,
             .conceptual-input {
                 font-size: 0.85rem;
-                width: 100px;
+                width: 110px;
                 padding: 1px 4px;
             }
 
@@ -799,56 +832,45 @@
     <!-- Üst Menü (Navbar) -->
     <div class="navbar">
         <div class="nav-brand">
-            <div class="nav-brand-logo">
-                <!-- SVG Terminal Brackets / Screen Logo -->
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-            </div>
-            <h2>VYS PAD</h2>
-            <span>İleri Seviye</span>
+            <div class="nav-brand-logo">C#</div>
+            <h2>C# ACADEMY PAD</h2>
+            <span>Hafta 10, 12, 13</span>
         </div>
 
         <div class="nav-links">
             <button class="nav-link active" data-tab="guide">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="12" y1="16" x2="12" y2="12"></line>
                     <line x1="12" y1="8" x2="12.01" y2="8"></line>
                 </svg>
-                Kılavuz & Duyurular
+                Kılavuz & İpuçları
             </button>
             <button class="nav-link" data-tab="notes">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
                 Ders Notları
             </button>
             <button class="nav-link" data-tab="code-exercises">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="16 18 22 12 16 6"></polyline>
                     <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
                 Kod Tamamlama
             </button>
             <button class="nav-link" data-tab="conceptual-quizzes">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
-                Kavramsal Egzersizler
+                Kavramsal Testler
             </button>
         </div>
 
         <div class="nav-progress">
-            <div class="nav-progress-text" id="score-text">Skor: 0 / 43 Puan</div>
+            <div class="nav-progress-text" id="score-text">Skor: 0 / 38 Puan</div>
             <div class="nav-progress-bar-bg">
                 <div class="nav-progress-bar-fill" id="progress-fill"></div>
             </div>
@@ -860,247 +882,417 @@
 
         <!-- ================= SEKME: REHBER & DUYURULAR ================= -->
         <div id="guide" class="tab-section active">
-            <h1>Veritabanı Yönetim Sistemleri Kılavuzu & Duyurular</h1>
-            <p class="subtitle">Sınav ve alıştırmalarda dikkat etmeniz gereken en kritik SQL kuralları</p>
+            <h1>C# İleri Seviye Programlama Kılavuzu & İpuçları</h1>
+            <p class="subtitle">Sınav ve projelerde sizi başarıya taşıyacak kritik C# ve EF Core kuralları</p>
 
             <div class="alert-card alert-card-danger">
-                <h3>ÇOK ÖNEMLİ: SQL SENTAKS HASSASİYETİ VE SYNTAX HATALARI!</h3>
-                <p><strong>Değerli arkadaşlar, veritabanı yönetim sistemleri (VYS) sınavınızda kod yazarken harf hataları ve syntax kısıtlamalarına dikkat etmeniz gerekmektedir.</strong></p>
-                <p>SQL kelimelerini (SELECT, INSERT, UPDATE, TRIGGER vb.) büyük harfle yazmaya özen gösterin. Özellikle Trigger yapılarında satır bazlı işlem yapıldığını belirten <code>FOR EACH ROW</code> deyimini veya komut sonlarındaki noktalı virgülleri (;) unutmak doğrudan syntax hatasına yol açacaktır.</p>
+                <h3>⚠️ ÇOK ÖNEMLİ: C# BÜYÜK/KÜÇÜK HARF DUYARLILIĞI VE SYNTAX!</h3>
+                <p><strong>C# programlama dili tamamen Case-Sensitive (büyük-küçük harf duyarlı) bir dildir.</strong></p>
+                <p>Kod yazarken <code>abstract</code> yerine <code>Abstract</code> veya <code>DbSet</code> yerine <code>dbset</code> yazmak doğrudan derleyici hatası (Compiler Error) almanıza sebep olacaktır. Lütfen C# anahtar kelimelerini yazarken standartlarına tam olarak uyunuz. Kod tamamlama ve kavramsal testlerde yazım doğruluğu aranmaktadır!</p>
             </div>
 
             <div class="alert-card alert-card-success">
                 <h3>Sınavda Kesinlikle Karşılaşacağınız Detaylı Çalışılması Gereken Konular</h3>
-                <p>Sınava hazırlanırken mutlaka şu konu başlıklarını ezberleyin ve mantığını öğrenin:</p>
+                <p>Müfredattaki 10, 12 ve 13. haftaların odak noktaları şunlardır:</p>
                 <ul style="margin-top: 10px;">
-                    <li><strong>1. Aggregate ve Gruplama:</strong> COUNT, SUM, AVG, MAX, MIN fonksiyonları ile GROUP BY ve HAVING kullanımı. Satırları filtreleyen WHERE ile grupları filtreleyen HAVING farkı.</li>
-                    <li><strong>2. Stored Procedures (Saklı Yordamlar):</strong> Parametre türleri (IN, OUT, INOUT), yerel değişken tanımlama (DECLARE), değişkene değer atama (SELECT INTO) ve koşullu ifadeler (IF/ELSE).</li>
-                    <li><strong>3. Triggers (Tetikleyiciler):</strong> INSERT, UPDATE, DELETE olayları için BEFORE ve AFTER tetikleyici mimarisi. Verilerin eski ve yeni hallerine erişmek için <code>OLD</code> ve <code>NEW</code> ifadeleri.</li>
-                    <li><strong>4. Hata Yönetimi:</strong> Koşullara uymayan işlemleri iptal edip hata fırlatmak amacıyla kullanılan <code>SIGNAL SQLSTATE '45000'</code> yapısı.</li>
+                    <li><strong>1. Soyutlama (Abstraction):</strong> <code>abstract class</code> yapıları, soyut metotların (gövdesiz) alt sınıflarda zorunlu olarak uygulanması (<code>override</code>), <code>virtual</code> metotlar ile isteğe bağlı ezme işlemleri.</li>
+                    <li><strong>2. Kurucu Zincirleme (Constructor Chaining):</strong> Türetilmiş sınıfta kurucu metot oluştururken ata sınıfın (base class) kurucusuna <code>: base(...)</code> ifadesi ile parametre aktarma.</li>
+                    <li><strong>3. Arayüzler (Interfaces):</strong> Sınıflara yetenek kazandırma. C#'ta bir sınıf sadece tek bir sınıftan kalıtım alabilirken, birden çok arayüzü (<code>interface</code>) uygulayabilir.</li>
+                    <li><strong>4. Entity Framework Core (EF Core) & CRUD:</strong> `DbContext` sınıfından türeyen bağlantı yapısı, `DbSet<Entity>` tanımlaması, SQL Server bağlantısı (`UseSqlServer`), veri ekleme (`Add`), veri getirme/filtreleme (`Where`, `ToList`, `FirstOrDefault`), güncelleme ve silme (`Remove`) operasyonlarının ardından `SaveChanges()` ile veritabanına kaydetme.</li>
                 </ul>
             </div>
 
             <h2>Çalışma Yol Haritası</h2>
-            <p>Bu portal, sınavda karşınıza çıkacak olan tüm ileri seviye SQL kod bloklarını ve kavramları interaktif bir şekilde deneyimlemenizi sağlayacaktır. Yukarıdaki menüden <strong>Ders Notları</strong> sekmesine geçerek detaylı konu anlatımlarını okuyabilir, ardından <strong>Kod ve Kavramsal Egzersizler</strong> ile kendinizi sınayabilirsiniz!</p>
+            <p>Bu interaktif portal ile C# ve veritabanı bağlantılarınızı pekiştireceksiniz. Yukarıdaki menüden <strong>Ders Notları</strong> sekmesine geçerek kodların detaylı satır satır analizini okuyabilir, ardından <strong>Kod Tamamlama</strong> ve <strong>Kavramsal Testler</strong> ile kendinizi sınayabilirsiniz!</p>
         </div>
 
         <!-- ================= SEKME: DERS NOTLARI ================= -->
         <div id="notes" class="tab-section">
-            <h1>Eğitmen Anlatımlı Ders Notları</h1>
-            <p class="subtitle">Sınav odaklı anlatım ve konu özetleri</p>
+            <h1>Ders Notları ve Kod Analizleri</h1>
+            <p class="subtitle">Eğitmen açıklamaları ve satır satır kod analizleri</p>
 
             <!-- Alt Sekmeler -->
             <div class="subtabs">
-                <button class="subtab active" data-subtab="note-agg">1. Aggregate ve Gruplama</button>
-                <button class="subtab" data-subtab="note-sp">2. Stored Procedures</button>
-                <button class="subtab" data-subtab="note-trg">3. Triggers (Tetikleyiciler)</button>
+                <button class="subtab active" data-subtab="note-oop">Hafta 10: OOP & Soyutlama</button>
+                <button class="subtab" data-subtab="note-interface">Hafta 12: Arayüzler (Interfaces)</button>
+                <button class="subtab" data-subtab="note-efcore">Hafta 13: EF Core & CRUD</button>
             </div>
 
-            <!-- Alt Sekme İçeriği: Aggregate -->
-            <div id="note-agg" class="subtab-content active">
-                <h2>1. Aggregate (Toplama) Fonksiyonları</h2>
+            <!-- Alt Sekme İçeriği: Hafta 10 -->
+            <div id="note-oop" class="subtab-content active">
+                <h2>Hafta 10 - Nesne Yönelimli Programlama (Soyut Sınıf ve Metotlar)</h2>
                 <div class="edu-grid">
                     <div class="box box-lecture">
-                        <h3>📚 Toplama Fonksiyonları</h3>
-                        <p>Aggregate fonksiyonlar birden fazla satırdaki veriyi tek bir sonuç üretmek üzere işlerler:</p>
-                        <ul>
-                            <li><code>COUNT()</code>: Satır veya kayıt sayısını verir. Benzersiz değerleri saymak için <code>COUNT(DISTINCT sutun)</code> kullanılır.</li>
-                            <li><code>SUM() & AVG()</code>: Sayısal sütunların toplamını ve ortalamasını alır. Örn: <code>SUM(miktar * fiyat)</code>.</li>
-                            <li><code>MAX() & MIN()</code>: Veri grubundaki en büyük ve en küçük değerleri bulur.</li>
-                        </ul>
+                        <h3>📚 Soyut Sınıf (Abstract Class) Mantığı</h3>
+                        <p>Üzerinden nesne örneği (instance) doğrudan <strong>üretilemeyen</strong>, sadece başka sınıflara taban oluşturması amacıyla tanımlanan sınıflardır. Ortak özellikleri ve metotları tek bir çatıda birleştirmeyi sağlarlar.</p>
+                        <p>Örnek projede, bankadaki tüm hesapların ortak paydası olan soyut bir <code>Hesap</code> sınıfı tanımlanmıştır. `VadeliHesap` ve `VadesizHesap` bu sınıftan kalıtım alır.</p>
                     </div>
                     <div class="box box-tip">
-                        <h3>💡 GROUP BY ve HAVING İlişkisi</h3>
-                        <p>Aynı değere sahip kayıtları gruplamak için <code>GROUP BY</code> kullanılır. Gruplanmış verileri filtrelemek istediğimizde <code>HAVING</code> kullanılır.</p>
-                        <p><strong>Kritik Fark:</strong> WHERE satırları filtrelerken, HAVING grupları filtreler. Örneğin, toplamı 10.000'den büyük olan grupları seçmek için <code>WHERE SUM(...) > 10000</code> yazmak hatalıdır; <code>HAVING SUM(...) > 10000</code> yazılmalıdır.</p>
+                        <h3>💡 Abstract ve Virtual Metot Farkı</h3>
+                        <ul>
+                            <li><strong>Abstract Metot:</strong> Gövdesi (kod bloğu) bulunmayan, sadece imzası olan metotlardır. Alt sınıflar bu metotları <code>override</code> etmek <strong>ZORUNDADIR</strong>.</li>
+                            <li><strong>Virtual Metot:</strong> Gövdesi olan ve varsayılan bir işi yerine getiren metotlardır. Alt sınıflar isterse aynen kullanır, isterse <code>override</code> edip kendi ihtiyaçlarına göre özelleştirebilir.</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="code-container" style="margin-top: 30px;">
+                <!-- Hesap.cs -->
+                <div class="code-container">
                     <div class="code-header">
-                        <span>🔍 En Başarılı Öğrenci Bulma Sorgusu</span>
+                        <span>Hesap.cs (Soyut Temel Sınıf)</span>
                     </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">SELECT</span> O.ad, <span class="fn">AVG</span>(N.notu) <span class="kw">AS</span> ortalama
-<span class="kw">FROM</span> Ogrenciler O
-<span class="kw">JOIN</span> Notlar N <span class="kw">ON</span> O.ogrNo = N.ogrNo
-<span class="kw">GROUP BY</span> O.ad
-<span class="kw">ORDER BY</span> ortalama <span class="kw">DESC</span>
-<span class="kw">LIMIT</span> 1;</code></pre>
+                    <pre><code><span class="kw">using</span> <span class="type">System</span>;
+
+<span class="kw">namespace</span> Hafta10_24042026
+{
+    <span class="kw">abstract class</span> <span class="type">Hesap</span> 
+    {
+        <span class="kw">private string</span> _hesapNo;
+        <span class="kw">private string</span> _sahibiAdi;
+        <span class="kw">private decimal</span> _bakiye;
+
+        <span class="kw">public string</span> HesapNo => _hesapNo; <span class="cmt">// Sadece okunabilir özellik</span>
+        <span class="kw">public string</span> SahibiAdi => _sahibiAdi;
+
+        <span class="kw">public decimal</span> Bakiye
+        {
+            <span class="kw">get</span> { <span class="kw">return</span> _bakiye; }
+            <span class="kw">protected set</span> <span class="cmt">// Sadece bu sınıf ve türeyen sınıflar değiştirebilir</span>
+            {
+                <span class="kw">if</span> (value &lt; 0)
+                    <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">"Bakiye 0'dan az olamaz"</span>);
+                <span class="kw">else</span>
+                    _bakiye = value;
+            }
+        }
+
+        <span class="kw">public</span> <span class="fn">Hesap</span>(<span class="kw">string</span> no, <span class="kw">string</span> ad, <span class="kw">decimal</span> bakiye)
+        {
+            _hesapNo = no;
+            _sahibiAdi = ad;
+            Bakiye = bakiye;
+        }
+
+        <span class="cmt">// Sanal Metot: Alt sınıflarda isteğe bağlı ezilebilir</span>
+        <span class="kw">public virtual void</span> <span class="fn">BilgiGoster</span>()
+        {
+            <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">$"{SahibiAdi} - {HesapNo} : {Bakiye}TL"</span>);
+        }
+
+        <span class="cmt">// Soyut Metotlar: Alt sınıflar ezmek (override) ZORUNDADIR</span>
+        <span class="kw">public abstract void</span> <span class="fn">ParaYatir</span>(<span class="kw">decimal</span> miktar);
+        <span class="kw">public abstract void</span> <span class="fn">ParaCek</span>(<span class="kw">decimal</span> miktar);
+        <span class="kw">public abstract string</span> <span class="fn">HesapTuru</span>();
+    }
+}</code></pre>
                 </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 Kodun Detaylı Açıklaması</h3>
-                    <p>Bu sorgu, iki tabloyu birleştirerek öğrenci bazında not ortalaması hesaplar ve en yüksek ortalamaya sahip ilk öğrenciyi seçer:</p>
+
+                <div class="box box-blue" style="margin-top: 15px;">
+                    <h3>📋 Hesap Sınıfı Detaylı Açıklamaları</h3>
                     <ul>
-                        <li><strong>SELECT O.ad, AVG(N.notu) AS ortalama:</strong> Öğrencinin adını ve notlar tablosundaki <code>notu</code> sütununun ortalamasını (<code>AVG</code>) hesaplayarak <code>ortalama</code> adında geçici bir sütun (takma ad / alias) olarak seçer.</li>
-                        <li><strong>FROM Ogrenciler O:</strong> Ana veri kaynağı olarak <code>Ogrenciler</code> tablosunu belirler ve bu tabloya <code>O</code> kısa adını (alias) verir.</li>
-                        <li><strong>JOIN Notlar N ON O.ogrNo = N.ogrNo:</strong> <code>Ogrenciler</code> tablosunu, öğrenci numaraları (<code>ogrNo</code>) üzerinden <code>Notlar</code> tablosu ile birleştirir (INNER JOIN). Böylece her öğrencinin aldığı notlarla eşleşmesi sağlanır.</li>
-                        <li><strong>GROUP BY O.ad:</strong> Ortalamanın her öğrenci için ayrı ayrı hesaplanabilmesi için verileri öğrenci adına göre gruplar.</li>
-                        <li><strong>ORDER BY ortalama DESC:</strong> Hesaplanan not ortalamalarını en yüksekten en düşüğe (azalan sırada - <code>DESC</code>) sıralar.</li>
-                        <li><strong>LIMIT 1:</strong> Sıralanan bu listeden sadece en üstteki (yani en yüksek ortalamaya sahip) 1 kaydı çeker.</li>
+                        <li><strong>abstract class Hesap:</strong> Sınıfın soyut olduğunu belirtir. <code>new Hesap(...)</code> şeklinde doğrudan çağrılarak nesnesi oluşturulamaz.</li>
+                        <li><strong>protected set:</strong> <code>Bakiye</code> özelliğinin değeri sadece <code>Hesap</code> sınıfı ve ondan türeyen <code>VadeliHesap</code>, <code>VadesizHesap</code> gibi sınıflar içerisinden değiştirilebilir, dış dünyaya kapalıdır.</li>
+                        <li><strong>public virtual void BilgiGoster():</strong> Bu metot varsayılan bir çıktı verir. İstenirse alt sınıflar kendi formatında yazdırmak için bu metodu ezebilir.</li>
+                        <li><strong>public abstract void ParaYatir(...):</strong> Hesap türüne göre para yatırma kuralları değişeceğinden gövdesiz bırakılmıştır. Alt sınıflar kendi kuralları doğrultusunda bu metodu kodlamak zorundadır.</li>
+                    </ul>
+                </div>
+
+                <!-- VadeliHesap.cs -->
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>VadeliHesap.cs (Türetilmiş Sınıf)</span>
+                    </div>
+                    <pre><code><span class="kw">namespace</span> Hafta10_24042026
+{
+    <span class="kw">class</span> <span class="type">VadeliHesap</span> : <span class="type">Hesap</span>
+    {
+        <span class="kw">private int</span> _vadeSure;
+        <span class="kw">private bool</span> _vadeGeldiMi;
+
+        <span class="cmt">// :base(...) ifadesi üst sınıfın constructor'ını tetikler</span>
+        <span class="kw">public</span> <span class="fn">VadeliHesap</span>(<span class="kw">string</span> no, <span class="kw">string</span> ad, <span class="kw">decimal</span> bakiye, <span class="kw">int</span> sure)
+            : <span class="kw">base</span>(no, ad, bakiye)
+        {
+            _vadeSure = sure;
+            _vadeGeldiMi = <span class="kw">false</span>;
+        }
+
+        <span class="cmt">// Soyut metotların ezilmesi</span>
+        <span class="kw">public override void</span> <span class="fn">ParaYatir</span>(<span class="kw">decimal</span> miktar)
+        {
+            <span class="kw">if</span> (miktar &lt; 0) <span class="kw">return</span>;
+            Bakiye += miktar;
+        }
+
+        <span class="kw">public override void</span> <span class="fn">ParaCek</span>(<span class="kw">decimal</span> miktar)
+        {
+            <span class="kw">if</span> (!_vadeGeldiMi)
+            {
+                <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">"Hesap vadeli. Süre dolmadan bozamazsınız!"</span>);
+                <span class="kw">return</span>;
+            }
+            <span class="kw">if</span> (miktar &gt; Bakiye) <span class="kw">return</span>;
+            Bakiye -= miktar;
+        }
+
+        <span class="kw">public override string</span> <span class="fn">HesapTuru</span>() =&gt; <span class="str">"Vadeli Hesap"</span>;
+
+        <span class="cmt">// Sınıfa özgü yeni bir metot</span>
+        <span class="kw">public void</span> <span class="fn">VadeSonlandir</span>()
+        {
+            _vadeGeldiMi = <span class="kw">true</span>;
+        }
+
+        <span class="cmt">// Sanal metodun ezilip base metodun çağırılması</span>
+        <span class="kw">public override void</span> <span class="fn">BilgiGoster</span>()
+        {
+            <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">"Hesap Türü: "</span> + <span class="fn">HesapTuru</span>());
+            <span class="kw">base</span>.<span class="fn">BilgiGoster</span>(); <span class="cmt">// Üst sınıftaki BilgiGoster'i çağırır</span>
+        }
+    }
+}</code></pre>
+                </div>
+
+                <div class="box box-blue" style="margin-top: 15px;">
+                    <h3>📋 VadeliHesap Sınıfı Detaylı Açıklamaları</h3>
+                    <ul>
+                        <li><strong>: base(no, ad, bakiye):</strong> Üst sınıf olan <code>Hesap</code> sınıfının kurucusunu çağırır. Alt sınıfta üst sınıfın kurucu parametrelerini doldurmak zorunludur.</li>
+                        <li><strong>public override void ParaCek:</strong> Vadeli hesaptan para çekebilmek için <code>_vadeGeldiMi</code> kontrolü yapılmıştır. Eğer vade dolmamışsa işlem engellenir.</li>
+                        <li><strong>base.BilgiGoster():</strong> Override ettiğimiz metot içerisinde üst sınıfta yazılı olan kodları aynen çalıştırmak için kullanılır. Böylece ortak bilgileri tekrar yazmadan ekrana basabiliriz.</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Alt Sekme İçeriği: Stored Procedures -->
-            <div id="note-sp" class="subtab-content" style="display:none;">
-                <h2>2. Stored Procedure (Saklı Yordamlar)</h2>
+            <!-- Alt Sekme İçeriği: Hafta 12 -->
+            <div id="note-interface" class="subtab-content" style="display:none;">
+                <h2>Hafta 12 - Arayüzler (Interfaces)</h2>
                 <div class="edu-grid">
                     <div class="box box-lecture">
-                        <h3>📚 Saklı Yordamların Yapısı ve Derleme Aşamaları</h3>
-                        <p>Veritabanı sunucusunda saklanan hazır SQL komut bloklarıdır. Kod tekrarını önler, güvenliği artırır ve performansı yükseltir.</p>
-                        <ul>
-                            <li><strong>Initial Processing (İlk İşleme):</strong> Prosedür ilk oluşturulduğunda derlenir ve veritabanında saklanır.</li>
-                            <li><strong>Subsequent Processing (Sonraki İşleme):</strong> Sonraki çağrılarda yeniden derlenmez; doğrudan saklanan derlenmiş kod hızlıca yürütülür.</li>
-                        </ul>
+                        <h3>📚 Arayüz (Interface) Nedir?</h3>
+                        <p>Sınıflara belirli yetenekler kazandıran, içerisinde sadece metot ve özelliklerin <strong>imzasını</strong> barındıran şablonlardır. Sınıfların dış dünyaya sunacağı sözleşmelerdir.</p>
+                        <p>C# dilinde çoklu kalıtım (multiple inheritance) yasaktır. Yani bir sınıf sadece bir sınıftan kalıtım alabilir. Ancak, bir sınıf <strong>birden fazla arayüzü</strong> uygulayarak çoklu yetenek kazanabilir.</p>
                     </div>
                     <div class="box box-tip">
-                        <h3>💡 Parametreler & Değişkene Veri Aktarma</h3>
-                        <p>Prosedürler 3 tip parametre kabul edebilir: <strong>IN</strong> (içeri değer gönderir), <strong>OUT</strong> (çağıran yere değer döndürür), <strong>INOUT</strong> (değeri hem alır hem de güncelleyerek geri döndürür).</p>
-                        <p>Yordam içinde bir tablodan okunan değeri yerel bir değişkene atamak için <code>SELECT kolon INTO degisken FROM ...</code> kalıbı kullanılır.</p>
-                        <p>MySQL'de prosedürler doğrudan güncellenemez; önce <code>DROP PROCEDURE IF EXISTS prosedür_adi;</code> ile silinip baştan oluşturulmalıdır.</p>
+                        <h3>💡 Arayüz Kuralları</h3>
+                        <ul>
+                            <li>Arayüzlerin içerisindeki üyeler varsayılan olarak <code>public</code> erişim belirleyicisine sahiptir ve gövdeleri (kodları) yazılmaz.</li>
+                            <li>Arayüzlerin kurucu metodu (constructor) ve üye değişkenleri (field) olamaz.</li>
+                            <li>Arayüzü uygulayan bir sınıf, arayüzdeki tüm metotları yazmak zorundadır. Yazarken <code>override</code> kelimesi kullanılmaz.</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="code-container" style="margin-top: 30px;">
+                <!-- Program.cs (H12) -->
+                <div class="code-container">
                     <div class="code-header">
-                        <span>🔍 Maaş Güncelleme Saklı Yordamı (Stored Procedure)</span>
+                        <span>Program.cs (Arayüz Tanımlamaları ve Uygulama)</span>
                     </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">DELIMITER</span> //
-<span class="kw">CREATE PROCEDURE</span> maas_guncelle_v2(<span class="kw">IN</span> pid INT, <span class="kw">IN</span> artis INT)
-<span class="kw">BEGIN</span>
-  <span class="kw">DECLARE</span> mevcut_maas INT;
-  
-  <span class="kw">SELECT</span> maas <span class="kw">INTO</span> mevcut_maas <span class="kw">FROM</span> Personel <span class="kw">WHERE</span> id = pid;
-  
-  <span class="kw">IF</span> mevcut_maas <span class="kw">IS NULL THEN</span>
-    <span class="kw">INSERT INTO</span> Loglar (mesaj) <span class="kw">VALUES</span> (CONCAT(<span class="str">'HATA: Personel bulunamadı'</span>));
-  <span class="kw">ELSE</span>
-    <span class="kw">UPDATE</span> Personel <span class="kw">SET</span> maas = maas + artis <span class="kw">WHERE</span> id = pid;
-  <span class="kw">END IF</span>;
-<span class="kw">END</span> //
-<span class="kw">DELIMITER</span> ;</code></pre>
+                    <pre><code><span class="kw">using</span> <span class="type">System</span>;
+
+<span class="kw">namespace</span> Hafta12_08052026
+{
+    <span class="cmt">// Arayüz 1</span>
+    <span class="kw">interface</span> <span class="type">IGonderilebilir</span>
+    {
+        <span class="kw">void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici, <span class="kw">string</span> adres);
+        <span class="kw">string</span> <span class="fn">TakipNoUret</span>();
+    }
+
+    <span class="cmt">// Arayüz 2</span>
+    <span class="kw">interface</span> <span class="type">ITakipEdilebilir</span>
+    {
+        <span class="kw">string</span> <span class="fn">TakipSorgu</span>(<span class="kw">string</span> takipNo);
+        <span class="kw">bool</span> <span class="fn">TeslimEdildiMi</span>(<span class="kw">string</span> takipNo);
+    }
+
+    <span class="cmt">// Arayüz 3</span>
+    <span class="kw">interface</span> <span class="type">IFiyatlandirilabilir</span>
+    {
+        <span class="kw">decimal</span> <span class="fn">Hesapla</span>(<span class="kw">double</span> kg, <span class="kw">double</span> mesafe);
+        <span class="kw">void</span> <span class="fn">FaturaGoster</span>();
+    }
+
+    <span class="cmt">// Soyut Sınıf arayüzleri uygular (Çoklu arayüz uygulaması)</span>
+    <span class="kw">abstract class</span> <span class="type">Kargo</span> : <span class="type">IGonderilebilir</span>, <span class="type">ITakipEdilebilir</span>, <span class="type">IFiyatlandirilabilir</span>
+    {
+        <span class="kw">private string</span> _gondericiAdi;
+        <span class="kw">private string</span> _takipNo;
+        <span class="kw">private double</span> _agirlikKg;
+        <span class="kw">private bool</span> _teslimEdildi;
+
+        <span class="kw">public string</span> GondericiAdi =&gt; _gondericiAdi;
+        <span class="kw">public string</span> TakipNo =&gt; _takipNo;
+        <span class="kw">public double</span> AgirlikKg =&gt; _agirlikKg;
+        <span class="kw">public bool</span> TeslimEdildi =&gt; _teslimEdildi;
+
+        <span class="kw">public</span> <span class="fn">Kargo</span>(<span class="kw">string</span> ad, <span class="kw">double</span> kg)
+        {
+            _gondericiAdi = ad;
+            _agirlikKg = kg;
+            _takipNo = <span class="type">string</span>.Empty;
+            _teslimEdildi = <span class="kw">false</span>;
+        }
+
+        <span class="cmt">// Soyut metot olarak bırakılan arayüz metotları. Alt sınıflar override edecek.</span>
+        <span class="kw">public abstract void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici, <span class="kw">string</span> adres);
+        <span class="kw">public abstract string</span> <span class="fn">TakipNoUret</span>();
+        <span class="kw">public abstract decimal</span> <span class="fn">Hesapla</span>(<span class="kw">double</span> kg, <span class="kw">double</span> mesafe);
+        <span class="kw">public abstract void</span> <span class="fn">FaturaGoster</span>();
+
+        <span class="cmt">// Arayüz metotlarının gövdeli virtual olarak uygulanması</span>
+        <span class="kw">public virtual string</span> <span class="fn">TakipSorgu</span>(<span class="kw">string</span> takipno)
+        {
+            <span class="kw">if</span> (_takipNo == takipno)
+            {
+                <span class="kw">return</span> <span class="str">$"Takip no {takipno}: "</span> + (TeslimEdildi ? <span class="str">"Teslim Edildi"</span> : <span class="str">"Yolda"</span>);
+            }
+            <span class="kw">return</span> <span class="str">"Kargo bulunamadı"</span>;
+        }
+
+        <span class="kw">public virtual bool</span> <span class="fn">TeslimEdildiMi</span>(<span class="kw">string</span> takipno) =&gt; _teslimEdildi;
+
+        <span class="kw">protected void</span> <span class="fn">TakipNoAta</span>(<span class="kw">string</span> no) =&gt; _takipNo = no;
+        <span class="kw">public void</span> <span class="fn">TeslimAl</span>() =&gt; _teslimEdildi = <span class="kw">true</span>;
+    }
+
+    <span class="cmt">// Türetilmiş Sınıf</span>
+    <span class="kw">class</span> <span class="type">KaraKargo</span> : <span class="type">Kargo</span>
+    {
+        <span class="kw">private string</span> _plaka;
+
+        <span class="kw">public</span> <span class="fn">KaraKargo</span>(<span class="kw">string</span> ad, <span class="kw">double</span> kg, <span class="kw">string</span> plaka) : <span class="kw">base</span>(ad, kg)
+        {
+            _plaka = plaka;
+        }
+
+        <span class="kw">public override void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici, <span class="kw">string</span> adres)
+        {
+            <span class="kw">string</span> no = <span class="fn">TakipNoUret</span>();
+            <span class="fn">TakipNoAta</span>(no);
+            <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">$"Kara kargosu {no} takip no ile yola çıktı."</span>);
+        }
+
+        <span class="kw">public override string</span> <span class="fn">TakipNoUret</span>() =&gt; <span class="type">DateTime</span>.Now.Ticks.<span class="fn">ToString</span>();
+        <span class="kw">public override decimal</span> <span class="fn">Hesapla</span>(<span class="kw">double</span> kg, <span class="kw">double</span> mesafe) =&gt; (<span class="kw">decimal</span>)(mesafe * 2.5 + kg * 4.0);
+        <span class="kw">public override void</span> <span class="fn">FaturaGoster</span>() =&gt; <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">$"Gönderici: {GondericiAdi}, Plaka: {_plaka}"</span>);
+    }
+}</code></pre>
                 </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 Kodun Detaylı Açıklaması</h3>
-                    <p>Bu saklı yordam, belirli bir personelin maaşına zam yapar veya personel bulunamazsa log tablosuna hata kaydeder:</p>
+
+                <div class="box box-blue" style="margin-top: 15px;">
+                    <h3>📋 Kargo ve KaraKargo Analizi</h3>
                     <ul>
-                        <li><strong>DELIMITER // ve DELIMITER ;:</strong> MySQL'de varsayılan noktalı virgül (;) ayırıcısını geçici olarak <code>//</code> yapar. Bu sayede prosedür içindeki noktalı virgüllerin prosedürü erken sonlandırması engellenir. En sonda tekrar eski haline (;) getirilir.</li>
-                        <li><strong>CREATE PROCEDURE maas_guncelle_v2(IN pid INT, IN artis INT):</strong> <code>maas_guncelle_v2</code> adında, dışarıdan iki adet girdi (<code>IN</code>) parametresi (personel id'si ve artış miktarı) alan bir saklı yordam tanımlar.</li>
-                        <li><strong>DECLARE mevcut_maas INT;:</strong> Prosedür içinde kullanılmak üzere tam sayı tipinde <code>mevcut_maas</code> yerel değişkeni tanımlar.</li>
-                        <li><strong>SELECT maas INTO mevcut_maas FROM Personel WHERE id = pid;:</strong> Belirtilen personelin maaşını bulup <code>INTO</code> komutu ile deklare ettiğimiz <code>mevcut_maas</code> değişkenine atar.</li>
-                        <li><strong>IF mevcut_maas IS NULL THEN ... ELSE ... END IF;:</strong> Maaşın bulunup bulunamadığını denetler. Eğer personel bulunamazsa (NULL ise) log tablosuna INSERT yapar. Bulunursa UPDATE ile personelin maaşını günceller.</li>
+                        <li><strong>interface IGonderilebilir:</strong> Arayüzler <code>interface</code> anahtar kelimesi ile deklare edilir. Sadece metodun dönüş tipi, adı ve parametrelerini barındırır.</li>
+                        <li><strong>Kargo : IGonderilebilir, ITakipEdilebilir, IFiyatlandirilabilir:</strong> C#'ta çoklu yetenek kazandırma. Kargo sınıfı 3 ayrı arayüzün de sözleşmesini imzalamıştır.</li>
+                        <li><strong>public abstract void Gonder(...):</strong> Kargo sınıfı abstract bir sınıf olduğu için arayüzden gelen metotları kendisi gövdeli yazmak zorunda değildir. Bunları alt sınıflara devretmek için <code>abstract</code> olarak tanımlamıştır.</li>
+                        <li><strong>class KaraKargo : Kargo:</strong> KaraKargo normal (somut) bir sınıf olduğu için Kargo sınıfındaki tüm abstract üyeleri <code>override</code> etmek zorundadır.</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Alt Sekme İçeriği: Triggers -->
-            <div id="note-trg" class="subtab-content" style="display:none;">
-                <h2>3. Triggers (Tetikleyiciler)</h2>
+            <!-- Alt Sekme İçeriği: Hafta 13 -->
+            <div id="note-efcore" class="subtab-content" style="display:none;">
+                <h2>Hafta 13 - Entity Framework Core (EF Core) & CRUD İşlemleri</h2>
                 <div class="edu-grid">
                     <div class="box box-lecture">
-                        <h3>📚 Olay Bazlı Tetikleyiciler</h3>
-                        <p>Tetikleyiciler veritabanında belirli bir olay (INSERT, UPDATE, DELETE) gerçekleştiğinde otomatik olarak çalışan SQL bloklarıdır.</p>
+                        <h3>📚 Entity Framework Core Nedir?</h3>
+                        <p>C# nesnelerimiz ile ilişkisel veritabanımız (SQL Server vb.) arasında bir köprü vazifesi gören Nesne-İlişkisel Eşleme (ORM) kütüphanesidir. SQL komutları yazmadan verileri C# metotları ile yönetmemizi sağlar.</p>
+                        <p><strong>DbContext:</strong> EF Core'un kalbidir. Veritabanı bağlantısını, konfigürasyonunu ve sorgulamaları yöneten ana sınıftır.</p>
+                        <p><strong>DbSet&lt;T&gt;:</strong> Veritabanında bir tabloyu temsil eden sınıftır. CRUD işlemleri bu özellik üzerinden yürütülür.</p>
+                    </div>
+                    <div class="box box-tip">
+                        <h3>💡 CRUD İşlem Metotları</h3>
                         <ul>
-                            <li><strong>BEFORE:</strong> Olay gerçekleşmeden önce çalışır. Genellikle veri kontrolleri ve kısıtlamalarda kullanılır.</li>
-                            <li><strong>AFTER:</strong> Olay gerçekleştikten sonra çalışır. Loglama veya istatistik güncellemeleri için idealdir.</li>
+                            <li><strong>Create (Ekleme):</strong> <code>DbSet.Add(entity)</code> metodu ile veri kuyruğa eklenir.</li>
+                            <li><strong>Read (Sorgulama):</strong> LINQ metotları (<code>Where</code>, <code>OrderBy</code>, <code>ToList</code>, <code>FirstOrDefault</code>) ile veriler çekilir.</li>
+                            <li><strong>Update (Güncelleme):</strong> Veritabanından çekilen nesnenin özellikleri değiştirilir. EF Core değişikliği otomatik izler (tracking).</li>
+                            <li><strong>Delete (Silme):</strong> <code>DbSet.Remove(entity)</code> metodu ile veri kuyruktan silinir.</li>
+                            <li><strong>Fiziksel Kaydetme:</strong> Yapılan işlemlerin veritabanına aktarılması için mutlaka <code>SaveChanges()</code> metodu çağrılmalıdır.</li>
                         </ul>
                     </div>
-                    <div class="box box-danger">
-                        <h3>⚠️ NEW ve OLD Anahtar Kelimeleri</h3>
-                        <p>Tetikleyicilerde işlem gören satırın eski ve yeni verilerine erişmek için iki anahtar kelime kullanılır:</p>
-                        <ul>
-                            <li><code>NEW</code>: Eklenen veya güncellenmek istenen yeni veriyi temsil eder (INSERT ve UPDATE olaylarında).</li>
-                            <li><code>OLD</code>: Silinen veya güncellenmeden önceki eski veriyi temsil eder (UPDATE ve DELETE olaylarında).</li>
-                            <li>Tetikleyicinin her etkilenen satır için çalışmasını sağlayan <code>FOR EACH ROW</code> ifadesi zorunludur.</li>
-                        </ul>
-                    </div>
                 </div>
 
-                <div class="code-container" style="margin-top: 30px;">
+                <!-- OkulContext & Program -->
+                <div class="code-container">
                     <div class="code-header">
-                        <span>🔍 AFTER INSERT Sipariş Log Tetikleyicisi</span>
+                        <span>OkulContext.cs & Program.cs</span>
                     </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_ekle
-<span class="kw">AFTER INSERT ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<span class="kw">NEW</span>.musteri, <span class="str">' sipariş oluşturdu. Tutar: '</span>, <span class="kw">NEW</span>.tutar));
-<span class="kw">END</span> //</code></pre>
-                </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 AFTER INSERT Kodu Açıklaması</h3>
-                    <p>Bu tetikleyici, <code>Siparisler</code> tablosuna yeni bir sipariş başarıyla eklendikten sonra çalışır:</p>
-                    <ul>
-                        <li><strong>AFTER INSERT ON Siparisler:</strong> Tetikleyicinin <code>Siparisler</code> tablosuna yapılan ekleme (INSERT) işleminden sonra (AFTER) çalışacağını belirtir.</li>
-                        <li><strong>FOR EACH ROW:</strong> Ekleme işleminden etkilenen (eklenen) her bir satır için tetikleyicinin gövdesinin ayrı ayrı çalıştırılmasını sağlar.</li>
-                        <li><strong>NEW.musteri & NEW.tutar:</strong> Yeni eklenen satırdaki müşteri adı ve sipariş tutarı değerlerine <code>NEW</code> öneki vasıtasıyla erişir.</li>
-                    </ul>
+                    <pre><code><span class="kw">using</span> <span class="type">System</span>;
+<span class="kw">using</span> <span class="type">System.Linq</span>;
+<span class="kw">using</span> <span class="type">Microsoft.EntityFrameworkCore</span>;
+
+<span class="kw">namespace</span> Hafta13_15052026
+{
+    <span class="cmt">// Entity (Tablo Modeli)</span>
+    <span class="kw">public class</span> <span class="type">Ogrenci</span>
+    {
+        <span class="kw">public int</span> Id { <span class="kw">get</span>; <span class="kw">set</span>; } <span class="cmt">// Primary Key (Otomatik Artan)</span>
+        <span class="kw">public string</span> AdSoyad { <span class="kw">get</span>; <span class="kw">set</span>; }
+        <span class="kw">public int</span> Sinif { <span class="kw">get</span>; <span class="kw">set</span>; }
+        <span class="kw">public string</span> Bolum { <span class="kw">get</span>; <span class="kw">set</span>; }
+    }
+
+    <span class="cmt">// Veritabanı Context Sınıfı</span>
+    <span class="kw">class</span> <span class="type">OkulContext</span> : <span class="type">DbContext</span>
+    {
+        <span class="cmt">// Tabloyu temsil eder</span>
+        <span class="kw">public</span> <span class="type">DbSet</span>&lt;<span class="type">Ogrenci</span>&gt; Ogrenciler { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+        <span class="cmt">// Bağlantı yapılandırması</span>
+        <span class="kw">protected override void</span> <span class="fn">OnConfiguring</span>(<span class="type">DbContextOptionsBuilder</span> optionsBuilder)
+        {
+            optionsBuilder.<span class="fn">UseSqlServer</span>(<span class="str">"Server=SQLEXPRESS;Database=OgrenciDB;Trusted_Connection=true;TrustServerCertificate=true;"</span>);
+        }
+    }
+
+    <span class="kw">class</span> <span class="type">Program</span>
+    {
+        <span class="kw">static void</span> <span class="fn">Main</span>(<span class="kw">string</span>[] args)
+        {
+            <span class="kw">using</span> (<span class="type">OkulContext</span> db = <span class="kw">new</span> <span class="type">OkulContext</span>())
+            {
+                <span class="cmt">// Veritabanı yoksa oluşturulmasını sağlar</span>
+                db.Database.<span class="fn">EnsureCreated</span>();
+
+                <span class="cmt">// 1. CREATE (Veri Ekleme)</span>
+                <span class="type">Ogrenci</span> yeniOgr = <span class="kw">new</span> <span class="type">Ogrenci</span> { AdSoyad = <span class="str">"Sevim Güler"</span>, Sinif = 2, Bolum = <span class="str">"Bilgisayar"</span> };
+                db.Ogrenciler.<span class="fn">Add</span>(yeniOgr);
+                db.<span class="fn">SaveChanges</span>(); <span class="cmt">// DB'ye fiziksel olarak kaydeder</span>
+
+                <span class="cmt">// 2. READ (Veri Çekme & Filtreleme)</span>
+                <span class="kw">var</span> bilgisayarcilar = db.Ogrenciler
+                    .<span class="fn">Where</span>(o =&gt; o.Bolum == <span class="str">"Bilgisayar"</span>)
+                    .<span class="fn">OrderBy</span>(o =&gt; o.AdSoyad)
+                    .<span class="fn">ToList</span>();
+
+                <span class="cmt">// 3. UPDATE (Veri Güncelleme)</span>
+                <span class="kw">var</span> guncellenecek = db.Ogrenciler.<span class="fn">Where</span>(x =&gt; x.AdSoyad == <span class="str">"Sevim Güler"</span>).<span class="fn">FirstOrDefault</span>();
+                <span class="kw">if</span> (guncellenecek != <span class="kw">null</span>)
+                {
+                    guncellenecek.Sinif = 3;
+                    db.<span class="fn">SaveChanges</span>();
+                }
+
+                <span class="cmt">// 4. DELETE (Veri Silme)</span>
+                <span class="kw">var</span> silinecek = db.Ogrenciler.<span class="fn">Where</span>(x =&gt; x.Id == yeniOgr.Id).<span class="fn">FirstOrDefault</span>();
+                <span class="kw">if</span> (silinecek != <span class="kw">null</span>)
+                {
+                    db.Ogrenciler.<span class="fn">Remove</span>(silinecek);
+                    db.<span class="fn">SaveChanges</span>();
+                }
+            }
+        }
+    }
+}</code></pre>
                 </div>
 
-                <div class="code-container" style="margin-top: 30px;">
-                    <div class="code-header">
-                        <span>🔍 AFTER UPDATE Sipariş Durumu Değişim Tetikleyicisi</span>
-                    </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_update
-<span class="kw">AFTER UPDATE ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<span class="kw">OLD</span>.durum, <span class="str">' -> '</span>, <span class="kw">NEW</span>.durum, <span class="str">' olarak değişti'</span>));
-<span class="kw">END</span> //</code></pre>
-                </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 AFTER UPDATE Kodu Açıklaması</h3>
-                    <p>Bu tetikleyici, sipariş durumundaki güncellemeleri loglamak için tasarlanmıştır:</p>
+                <div class="box box-blue" style="margin-top: 15px;">
+                    <h3>📋 EF Core CRUD Analizi</h3>
                     <ul>
-                        <li><strong>AFTER UPDATE ON Siparisler:</strong> Siparişler tablosunda bir güncelleme (UPDATE) bittikten sonra çalışır.</li>
-                        <li><strong>OLD.durum & NEW.durum:</strong> Güncelleme öncesi eski durum değerine <code>OLD</code> önekiyle, yeni güncellenen durum değerine ise <code>NEW</code> önekiyle ulaşarak değişim logunu kaydeder.</li>
-                    </ul>
-                </div>
-
-                <div class="code-container" style="margin-top: 30px;">
-                    <div class="code-header">
-                        <span>🔍 BEFORE DELETE Sipariş Silinme Tetikleyicisi</span>
-                    </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_siparis_delete
-<span class="kw">BEFORE DELETE ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<span class="kw">OLD</span>.musteri, <span class="str">' siparişi silinmek üzere'</span>));
-<span class="kw">END</span> //</code></pre>
-                </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 BEFORE DELETE Kodu Açıklaması</h3>
-                    <p>Bu tetikleyici, sipariş silinmeden hemen önce çalışarak önlem logu tutar:</p>
-                    <ul>
-                        <li><strong>BEFORE DELETE ON Siparisler:</strong> Kayıt tablodan silinmeden önce (BEFORE) tetiklenir. Bu sayede veri henüz disken silinmeden okunabilir.</li>
-                        <li><strong>OLD.musteri:</strong> Silinecek olan satırın bilgilerine erişmek için <code>OLD</code> öneki kullanılır. Silinen veriler için <code>NEW</code> öneki tanımsızdır.</li>
-                    </ul>
-                </div>
-
-                <div class="code-container" style="margin-top: 30px;">
-                    <div class="code-header">
-                        <span>🔍 BEFORE INSERT Sipariş Tutarı Doğrulama Tetikleyicisi</span>
-                    </div>
-                    <pre style="background: var(--bg-code); color: #e4ebf5; padding: 20px; font-family: monospace;"><code><span class="kw">CREATE TRIGGER</span> trg_kontrol
-<span class="kw">BEFORE INSERT ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">IF</span> NEW.tutar <= 0 <span class="kw">THEN</span>
-    <span class="kw">SIGNAL SQLSTATE</span> <span class="str">'45000'</span>
-    <span class="kw">SET MESSAGE_TEXT</span> = <span class="str">'Sipariş tutarı negatif olamaz!'</span>;
-  <span class="kw">END IF</span>;
-<span class="kw">END</span> //</code></pre>
-                </div>
-                <div class="box box-lecture" style="margin-top: 15px; border-left-color: var(--purple);">
-                    <h3 style="color: #c792ea;">📋 BEFORE INSERT Kodu Açıklaması</h3>
-                    <p>Bu tetikleyici, geçersiz sipariş eklenmesini engelleyen bir veri doğrulama (validation) mekanizmasıdır:</p>
-                    <ul>
-                        <li><strong>BEFORE INSERT ON Siparisler:</strong> Sipariş tablosuna veri yazılmadan hemen önce çalışarak girdiyi denetler.</li>
-                        <li><strong>IF NEW.tutar &lt;= 0 THEN:</strong> Yeni eklenecek olan siparişin tutarının 0 veya negatif olup olmadığını sorgular.</li>
-                        <li><strong>SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = ...:</strong> Eğer koşul sağlanıyorsa (tutar geçersizse), <code>SIGNAL</code> komutuyla kullanıcı tanımlı hata kodu olan <code>'45000'</code> fırlatılır ve işlem tamamen iptal edilerek veritabanı düzeyinde hata döndürülür.</li>
+                        <li><strong>db.Database.EnsureCreated():</strong> Local veritabanı sunucusunda veritabanının fiziksel olarak var olup olmadığını kontrol eder, yoksa C# modellerine göre otomatik oluşturur.</li>
+                        <li><strong>db.Ogrenciler.Add(...):</strong> Eklenen nesneyi EF Core Change Tracker mekanizmasında "Added" (Eklendi) durumuna getirir. Henüz SQL sunucusuna gönderilmemiştir.</li>
+                        <li><strong>db.SaveChanges():</strong> Değişiklik izleyici (Change Tracker) üzerindeki tüm bekleyen işlemleri (Ekleme, Güncelleme, Silme) analiz eder, uygun SQL sorgularını üretir ve tek bir işlemde veritabanında çalıştırır.</li>
+                        <li><strong>FirstOrDefault():</strong> Sorguya uyan ilk elemanı getirir, eğer eşleşen kayıt bulunamazsa C#'taki varsayılan nesne karşılığı olan <code>null</code> değerini döndürür.</li>
                     </ul>
                 </div>
             </div>
@@ -1109,146 +1301,173 @@
         <!-- ================= SEKME: KOD EGZERSİZLERİ ================= -->
         <div id="code-exercises" class="tab-section">
             <h1>💻 Kod Tamamlama Egzersizleri</h1>
-            <p class="subtitle">Aşağıdaki SQL kod bloklarında boş bırakılan alanları doğru kodlarla doldurun!</p>
+            <p class="subtitle">Aşağıdaki C# kod bloklarında boş bırakılan alanları doğru anahtar kelimelerle doldurun!</p>
 
             <div class="subtabs">
-                <button class="subtab active" data-code-tab="code-ex-agg">Aggregate & JOIN (Alıştırma 1)</button>
-                <button class="subtab" data-code-tab="code-ex-sp">Stored Procedure (Alıştırma 2)</button>
-                <button class="subtab" data-code-tab="code-ex-trg1">AFTER INSERT Trigger (Alıştırma 3)</button>
-                <button class="subtab" data-code-tab="code-ex-trg2">AFTER UPDATE Trigger (Alıştırma 4)</button>
-                <button class="subtab" data-code-tab="code-ex-trg3">BEFORE DELETE Trigger (Alıştırma 5)</button>
-                <button class="subtab" data-code-tab="code-ex-trg4">BEFORE INSERT Hata (Alıştırma 6)</button>
+                <button class="subtab active" data-code-tab="code-ex-oop">OOP & Soyutlama (Alıştırma 1)</button>
+                <button class="subtab" data-code-tab="code-ex-interface">Arayüz Uygulaması (Alıştırma 2)</button>
+                <button class="subtab" data-code-tab="code-ex-efcore">EF Core & CRUD (Alıştırma 3)</button>
             </div>
 
-            <!-- Egzersiz 1: Aggregate & JOIN -->
-            <div id="code-ex-agg" class="code-exercise-content active">
+            <!-- Egzersiz 1: OOP -->
+            <div id="code-ex-oop" class="code-exercise-content active">
                 <div class="code-container">
                     <div class="code-header">
-                        <span>en_basarili_ogrenci.sql</span>
+                        <span>HesapSistemi.cs</span>
                     </div>
-                    <pre><code><input type="text" class="code-input" data-ans="SELECT" placeholder="..." style="width: 80px;"> O.ad, <input type="text" class="code-input" data-ans="AVG" placeholder="..." style="width: 60px;">(N.notu) <span class="kw">AS</span> ortalama
-<span class="kw">FROM</span> Ogrenciler O
-<input type="text" class="code-input" data-ans="JOIN" placeholder="..." style="width: 70px;"> Notlar N <span class="kw">ON</span> O.ogrNo = N.ogrNo
-<input type="text" class="code-input" data-ans="GROUP BY" placeholder="..." style="width: 100px;"> O.ad
-<input type="text" class="code-input" data-ans="ORDER BY" placeholder="..." style="width: 100px;"> ortalama <span class="kw">DESC</span>
-<input type="text" class="code-input" data-ans="LIMIT" placeholder="..." style="width: 70px;"> 1;</code></pre>
+                    <pre><code><span class="kw">namespace</span> Hafta10_Egzersiz
+{
+    <span class="cmt">// Sınıf soyut olarak bildirilmelidir</span>
+    <input type="text" class="code-input" data-ans="abstract" placeholder="..." style="width: 100px;"> <span class="kw">class</span> <span class="type">Hesap</span>
+    {
+        <span class="kw">private decimal</span> _bakiye;
+
+        <span class="kw">public decimal</span> Bakiye
+        {
+            <span class="kw">get</span> { <span class="kw">return</span> _bakiye; }
+            <span class="cmt">// Sadece alt sınıfların erişimi için:</span>
+            <input type="text" class="code-input" data-ans="protected" placeholder="..." style="width: 100px;"> <span class="kw">set</span>
+            {
+                _bakiye = value;
+            }
+        }
+
+        <span class="cmt">// Alt sınıfta ezilebilecek sanal metot</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="virtual" placeholder="..." style="width: 80px;"> <span class="kw">void</span> <span class="fn">BilgiGoster</span>()
+        {
+            <span class="type">Console</span>.<span class="fn">WriteLine</span>(Bakiye);
+        }
+
+        <span class="cmt">// Alt sınıfta kodlanması zorunlu soyut metot</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="abstract" placeholder="..." style="width: 100px;"> <span class="kw">void</span> <span class="fn">ParaYatir</span>(<span class="kw">decimal</span> miktar);
+    }
+
+    <span class="cmt">// VadeliHesap sınıfı kalıtım alıyor</span>
+    <input type="text" class="code-input" data-ans="class" placeholder="..." style="width: 70px;"> <span class="type">VadeliHesap</span> <input type="text" class="code-input" data-ans=":" placeholder="..." style="width: 30px;"> <span class="type">Hesap</span>
+    {
+        <span class="kw">public</span> <span class="fn">VadeliHesap</span>(<span class="kw">decimal</span> ilkBakiye) 
+            <span class="cmt">// Üst sınıfın kurucusuna parametre geçme</span>
+            : <input type="text" class="code-input" data-ans="base" placeholder="..." style="width: 70px;">(ilkBakiye) 
+        { }
+
+        <span class="cmt">// Soyut metot ezilmek zorundadır</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="override" placeholder="..." style="width: 100px;"> <span class="kw">void</span> <span class="fn">ParaYatir</span>(<span class="kw">decimal</span> miktar)
+        {
+            Bakiye += miktar;
+        }
+
+        <span class="cmt">// Kendi hesap türü adını döner</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="override" placeholder="..." style="width: 100px;"> <span class="kw">string</span> <span class="fn">HesapTuru</span>() =&gt; <span class="str">"Vadeli"</span>;
+    }
+}</code></pre>
                     <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-agg">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-agg">Cevabı Göster</button>
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-oop">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-oop">Cevabı Göster</button>
                     </div>
                     <div class="exercise-feedback"></div>
                 </div>
             </div>
 
-            <!-- Egzersiz 2: Stored Procedure -->
-            <div id="code-ex-sp" class="code-exercise-content" style="display:none;">
+            <!-- Egzersiz 2: Arayüzler -->
+            <div id="code-ex-interface" class="code-exercise-content" style="display:none;">
                 <div class="code-container">
                     <div class="code-header">
-                        <span>maas_guncelleme.sql</span>
+                        <span>ArayuzSistemi.cs</span>
                     </div>
-                    <pre><code><input type="text" class="code-input" data-ans="DELIMITER" placeholder="..." style="width: 110px;"> //
-<input type="text" class="code-input" data-ans="CREATE PROCEDURE" placeholder="..." style="width: 160px;"> maas_guncelle_v2(<input type="text" class="code-input" data-ans="IN" placeholder="..." style="width: 40px;"> pid INT, <input type="text" class="code-input" data-ans="IN" placeholder="..." style="width: 40px;"> artis INT)
-<span class="kw">BEGIN</span>
-  <input type="text" class="code-input" data-ans="DECLARE" placeholder="..." style="width: 90px;"> mevcut_maas INT;
-  
-  <span class="kw">SELECT</span> maas <input type="text" class="code-input" data-ans="INTO" placeholder="..." style="width: 70px;"> mevcut_maas <span class="kw">FROM</span> Personel <span class="kw">WHERE</span> id = pid;
-  
-  <input type="text" class="code-input" data-ans="IF" placeholder="..." style="width: 40px;"> mevcut_maas <span class="kw">IS NULL THEN</span>
-    <span class="kw">INSERT INTO</span> Loglar (mesaj) <span class="kw">VALUES</span> (CONCAT(<span class="str">'HATA: Personel bulunamadı'</span>));
-  <span class="kw">ELSE</span>
-    <input type="text" class="code-input" data-ans="UPDATE" placeholder="..." style="width: 80px;"> Personel <input type="text" class="code-input" data-ans="SET" placeholder="..." style="width: 50px;"> maas = maas + artis <span class="kw">WHERE</span> id = pid;
-  <input type="text" class="code-input" data-ans="END IF" placeholder="..." style="width: 80px;">;
-<span class="kw">END</span> //
-<span class="kw">DELIMITER</span> ;</code></pre>
+                    <pre><code><span class="kw">namespace</span> Hafta12_Egzersiz
+{
+    <span class="cmt">// Yetenek arayüzü tanımlama</span>
+    <input type="text" class="code-input" data-ans="interface" placeholder="..." style="width: 110px;"> <span class="type">IGonderilebilir</span>
+    {
+        <span class="kw">void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici);
+    }
+
+    <input type="text" class="code-input" data-ans="interface" placeholder="..." style="width: 110px;"> <span class="type">ITakipEdilebilir</span>
+    {
+        <span class="kw">string</span> <span class="fn">TakipNoUret</span>();
+    }
+
+    <span class="cmt">// Soyut Kargo sınıfı iki arayüzü de uyguluyor</span>
+    <input type="text" class="code-input" data-ans="abstract" placeholder="..." style="width: 100px;"> <span class="kw">class</span> <span class="type">Kargo</span> : <span class="type">IGonderilebilir</span>, <span class="type">ITakipEdilebilir</span>
+    {
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="abstract" placeholder="..." style="width: 100px;"> <span class="kw">void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici);
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="abstract" placeholder="..." style="width: 100px;"> <span class="kw">string</span> <span class="fn">TakipNoUret</span>();
+    }
+
+    <span class="cmt">// Somut KaraKargo sınıfı</span>
+    <input type="text" class="code-input" data-ans="class" placeholder="..." style="width: 70px;"> <span class="type">KaraKargo</span> : <span class="type">Kargo</span>
+    {
+        <span class="kw">public</span> <span class="fn">KaraKargo</span>() : <input type="text" class="code-input" data-ans="base" placeholder="..." style="width: 70px;">() { }
+
+        <span class="cmt">// Arayüzden miras kalan gövdesiz metotları doldurmak</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="override" placeholder="..." style="width: 100px;"> <span class="kw">void</span> <span class="fn">Gonder</span>(<span class="kw">string</span> alici)
+        {
+            <span class="type">Console</span>.<span class="fn">WriteLine</span>(<span class="str">"Gönderildi"</span>);
+        }
+
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="override" placeholder="..." style="width: 100px;"> <span class="kw">string</span> <span class="fn">TakipNoUret</span>() =&gt; <span class="str">"123"</span>;
+    }
+}</code></pre>
                     <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-sp">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-sp">Cevabı Göster</button>
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-interface">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-interface">Cevabı Göster</button>
                     </div>
                     <div class="exercise-feedback"></div>
                 </div>
             </div>
 
-            <!-- Egzersiz 3: AFTER INSERT Trigger -->
-            <div id="code-ex-trg1" class="code-exercise-content" style="display:none;">
+            <!-- Egzersiz 3: EF Core -->
+            <div id="code-ex-efcore" class="code-exercise-content" style="display:none;">
                 <div class="code-container">
                     <div class="code-header">
-                        <span>trg_siparis_ekle.sql</span>
+                        <span>VeritabaniIslemleri.cs</span>
                     </div>
-                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_ekle
-<input type="text" class="code-input" data-ans="AFTER INSERT" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
-<input type="text" class="code-input" data-ans="FOR EACH ROW" placeholder="..." style="width: 130px;">
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.musteri, <span class="str">' sipariş oluşturdu. Tutar: '</span>, <input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.tutar));
-<span class="kw">END</span> //</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg1">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg1">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
+                    <pre><code><span class="kw">using</span> <span class="type">Microsoft.EntityFrameworkCore</span>;
 
-            <!-- Egzersiz 4: AFTER UPDATE Trigger -->
-            <div id="code-ex-trg2" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>trg_siparis_update.sql</span>
-                    </div>
-                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_update
-<input type="text" class="code-input" data-ans="AFTER UPDATE" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="OLD" placeholder="..." style="width: 50px;">.durum, <span class="str">' -> '</span>, <input type="text" class="code-input" data-ans="NEW" placeholder="..." style="width: 50px;">.durum, <span class="str">' olarak değişti'</span>));
-<span class="kw">END</span> //</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg2">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg2">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
+<span class="kw">namespace</span> Hafta13_Egzersiz
+{
+    <span class="cmt">// DbContext bağlantı sınıfı</span>
+    <span class="kw">class</span> <span class="type">OkulContext</span> : <input type="text" class="code-input" data-ans="DbContext" placeholder="..." style="width: 110px;">
+    {
+        <span class="cmt">// Öğrenciler tablosu</span>
+        <span class="kw">public</span> <input type="text" class="code-input" data-ans="DbSet" placeholder="..." style="width: 80px;">&lt;<span class="type">Ogrenci</span>&gt; Ogrenciler { <span class="kw">get</span>; <span class="kw">set</span>; }
 
-            <!-- Egzersiz 5: BEFORE DELETE Trigger -->
-            <div id="code-ex-trg3" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>trg_siparis_delete.sql</span>
-                    </div>
-                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_siparis_delete
-<input type="text" class="code-input" data-ans="BEFORE DELETE" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <span class="kw">INSERT INTO</span> Loglar(mesaj)
-  <span class="kw">VALUES</span> (CONCAT(<input type="text" class="code-input" data-ans="OLD" placeholder="..." style="width: 50px;">.musteri, <span class="str">' siparişi silinmek üzere'</span>));
-<span class="kw">END</span> //</code></pre>
-                    <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg3">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg3">Cevabı Göster</button>
-                    </div>
-                    <div class="exercise-feedback"></div>
-                </div>
-            </div>
+        <span class="kw">protected</span> <input type="text" class="code-input" data-ans="override" placeholder="..." style="width: 100px;"> <span class="kw">void</span> <span class="fn">OnConfiguring</span>(<span class="type">DbContextOptionsBuilder</span> builder)
+        {
+            builder.<input type="text" class="code-input" data-ans="UseSqlServer" placeholder="..." style="width: 130px;">(<span class="str">"Server=localhost;Database=OgrDB;Trusted_Connection=True;"</span>);
+        }
+    }
 
-            <!-- Egzersiz 6: BEFORE INSERT Hata -->
-            <div id="code-ex-trg4" class="code-exercise-content" style="display:none;">
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>trg_kontrol.sql</span>
-                    </div>
-                    <pre><code><input type="text" class="code-input" data-ans="CREATE TRIGGER" placeholder="..." style="width: 150px;"> trg_kontrol
-<input type="text" class="code-input" data-ans="BEFORE INSERT" placeholder="..." style="width: 130px;"> <span class="kw">ON</span> Siparisler
-<span class="kw">FOR EACH ROW</span>
-<span class="kw">BEGIN</span>
-  <input type="text" class="code-input" data-ans="IF" placeholder="..." style="width: 40px;"> NEW.tutar <= 0 <span class="kw">THEN</span>
-    <input type="text" class="code-input" data-ans="SIGNAL SQLSTATE" placeholder="..." style="width: 160px;"> <span class="str">'45000'</span>
-    <input type="text" class="code-input" data-ans="SET MESSAGE_TEXT" placeholder="..." style="width: 160px;"> = <span class="str">'Sipariş tutarı negatif olamaz!'</span>;
-  <input type="text" class="code-input" data-ans="END IF" placeholder="..." style="width: 80px;">;
-<span class="kw">END</span> //</code></pre>
+    <span class="kw">class</span> <span class="type">DBSorgu</span>
+    {
+        <span class="kw">public void</span> <span class="fn">IslemYap</span>()
+        {
+            <span class="kw">using</span> (<span class="kw">var</span> db = <span class="kw">new</span> <span class="type">OkulContext</span>())
+            {
+                <span class="cmt">// Veritabanının varlığından emin ol</span>
+                db.Database.<input type="text" class="code-input" data-ans="EnsureCreated" placeholder="..." style="width: 140px;">();
+
+                <span class="cmt">// 1. Ekleme (Create)</span>
+                <span class="kw">var</span> o = <span class="kw">new</span> <span class="type">Ogrenci</span> { AdSoyad = <span class="str">"Ali"</span> };
+                db.Ogrenciler.<input type="text" class="code-input" data-ans="Add" placeholder="..." style="width: 70px;">(o);
+                db.<input type="text" class="code-input" data-ans="SaveChanges" placeholder="..." style="width: 120px;">();
+
+                <span class="cmt">// 2. Filtreleme (Read)</span>
+                <span class="kw">var</span> liste = db.Ogrenciler.<input type="text" class="code-input" data-ans="Where" placeholder="..." style="width: 85px;">(x =&gt; x.Sinif == 1).ToList();
+
+                <span class="cmt">// 3. Tekil Kayıt Getirme (Read First)</span>
+                <span class="kw">var</span> tekOgr = db.Ogrenciler.Where(x =&gt; x.Id == 1).<input type="text" class="code-input" data-ans="FirstOrDefault" placeholder="..." style="width: 140px;">();
+
+                <span class="cmt">// 4. Silme (Delete)</span>
+                db.Ogrenciler.<input type="text" class="code-input" data-ans="Remove" placeholder="..." style="width: 90px;">(tekOgr);
+                db.SaveChanges();
+            }
+        }
+    }
+}</code></pre>
                     <div class="exercise-actions">
-                        <button class="btn btn-primary btn-check-code" data-target="code-ex-trg4">Kontrol Et</button>
-                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-trg4">Cevabı Göster</button>
+                        <button class="btn btn-primary btn-check-code" data-target="code-ex-efcore">Kontrol Et</button>
+                        <button class="btn btn-secondary btn-toggle-code" data-target="code-ex-efcore">Cevabı Göster</button>
                     </div>
                     <div class="exercise-feedback"></div>
                 </div>
@@ -1258,82 +1477,74 @@
         <!-- ================= SEKME: KAVRAMSAL SINAV ================= -->
         <div id="conceptual-quizzes" class="tab-section">
             <h1>✍️ Kavramsal Egzersizler</h1>
-            <p class="subtitle">Konulardaki temel teorik terimleri boşluklara yazıp onaylayın!</p>
+            <p class="subtitle">Derslerde anlatılan temel teorik kavramları boşluklara yazıp onaylayın!</p>
 
             <!-- Soru 1 -->
             <div class="conceptual-card" id="q1">
-                <h3><span>Soru 1 - Kayıtları Gruplama ve Filtreleme</span> <span class="quiz-badge">Aggregate</span></h3>
+                <h3><span>Soru 1 - C#'ta Soyut Sınıf Tanımı</span> <span class="quiz-badge">OOP</span></h3>
                 <div class="conceptual-question">
-                    Aynı değerlere sahip kayıtları gruplamak için 
-                    <input type="text" class="conceptual-input" data-ans="GROUP BY" placeholder="...">
-                    kullanılırken, bu grupları filtrelemek amacıyla
-                    <input type="text" class="conceptual-input" data-ans="HAVING" placeholder="...">
-                    kelimesinden yararlanılır.
+                    C# dilinde doğrudan nesne örneği üretilemeyen ve sadece kalıtım tabanı oluşturabilen sınıflara
+                    <input type="text" class="conceptual-input" data-ans="abstract" placeholder="...">
+                    sınıf denir. Bu sınıflar içinde gövdesi yazılmayan metotlar
+                    <input type="text" class="conceptual-input" data-ans="abstract" placeholder="...">
+                    anahtar kelimesi ile bildirilirken, alt sınıflarda ezilebilecek gövdeli metotlara ise
+                    <input type="text" class="conceptual-input" data-ans="virtual" placeholder="...">
+                    metot adı verilir.
                 </div>
-                <div class="hint-text">İpucu: GROUP BY / HAVING</div>
+                <div class="hint-text">İpucu: abstract / abstract / virtual (Büyük/küçük harfe dikkat edin!)</div>
             </div>
 
             <!-- Soru 2 -->
             <div class="conceptual-card" id="q2">
-                <h3><span>Soru 2 - Saklı Yordam Parametreleri</span> <span class="quiz-badge">Procedure</span></h3>
+                <h3><span>Soru 2 - Çoklu Yetenek Kazandırma</span> <span class="quiz-badge">Arayüz</span></h3>
                 <div class="conceptual-question">
-                    Saklı yordamın dışarıdan girdi almasını sağlayan yön türü 
-                    <input type="text" class="conceptual-input" data-ans="IN" placeholder="...">
-                    iken, yordam içinden dışarıya sonuç döndürmeye yarayan parametre türü ise
-                    <input type="text" class="conceptual-input" data-ans="OUT" placeholder="...">
-                    olarak tanımlanır.
+                    C#'ta sınıflar arasında çoklu kalıtım yasak olduğundan, bir sınıfa birden fazla davranış veya yetenek kazandırmak amacıyla 
+                    <input type="text" class="conceptual-input" data-ans="interface" placeholder="...">
+                    kullanılır. Sınıfın bu yapıdaki tüm metot şablonlarını gövdeli hale getirmesi
+                    <input type="text" class="conceptual-input" data-ans="zorunlu" placeholder="...">
+                    durumdadır.
                 </div>
-                <div class="hint-text">İpucu: IN / OUT</div>
+                <div class="hint-text">İpucu: interface / zorunlu</div>
             </div>
 
             <!-- Soru 3 -->
             <div class="conceptual-card" id="q3">
-                <h3><span>Soru 3 - Değişkene Veri Aktarma</span> <span class="quiz-badge">Procedure</span></h3>
+                <h3><span>Soru 3 - Ata Sınıf Kurucu Tetikleme</span> <span class="quiz-badge">OOP</span></h3>
                 <div class="conceptual-question">
-                    Saklı yordam içinde SELECT ile çekilen tablo verisini yerel bir değişkene atamak için SELECT ile birlikte
-                    <input type="text" class="conceptual-input" data-ans="INTO" placeholder="...">
-                    kelimesi kullanılır. (Örn: SELECT maas INTO mevcut_maas)
+                    Türetilmiş bir sınıfın kurucu (constructor) metodundan üst sınıfın kurucu metoduna parametre geçirmek amacıyla kurucu metod imzasının hemen sonuna 
+                    <input type="text" class="conceptual-input" data-ans="base" placeholder="...">
+                    anahtar kelimesi zincirlenir (Örn: : base(param1)).
                 </div>
-                <div class="hint-text">İpucu: INTO</div>
+                <div class="hint-text">İpucu: base</div>
             </div>
 
             <!-- Soru 4 -->
             <div class="conceptual-card" id="q4">
-                <h3><span>Soru 4 - Satır Bazlı Tetiklenme</span> <span class="quiz-badge">Triggers</span></h3>
+                <h3><span>Soru 4 - Verileri Veritabanına Yansıtma</span> <span class="quiz-badge">EF Core</span></h3>
                 <div class="conceptual-question">
-                    Bir tetikleyicinin (Trigger) olaydan etkilenen her bir satır için ayrı ayrı çalıştırılmasını zorunlu kılan komut ifadesi
-                    <input type="text" class="conceptual-input" data-ans="FOR EACH ROW" placeholder="...">
-                    blok yapısıdır.
+                    Entity Framework Core kütüphanesinde kuyrukta bekleyen tüm veri tabanı işlemlerini (Ekleme, Silme, Güncelleme) fiziksel sunucuya yansıtmak amacıyla 
+                    <input type="text" class="conceptual-input" data-ans="SaveChanges" placeholder="...">
+                    metodu çağrılmalıdır. LINQ sorgusunda kritere uyan tek bir kaydı almak için ise 
+                    <input type="text" class="conceptual-input" data-ans="FirstOrDefault" placeholder="...">
+                    metodu kullanılır.
                 </div>
-                <div class="hint-text">İpucu: FOR EACH ROW</div>
+                <div class="hint-text">İpucu: SaveChanges / FirstOrDefault (C# PascalCase yazım standartlarına dikkat!)</div>
             </div>
 
             <!-- Soru 5 -->
             <div class="conceptual-card" id="q5">
-                <h3><span>Soru 5 - Eski ve Yeni Veri Önekleri</span> <span class="quiz-badge">Triggers</span></h3>
+                <h3><span>Soru 5 - EF Core Temel Yapı Taşı</span> <span class="quiz-badge">EF Core</span></h3>
                 <div class="conceptual-question">
-                    UPDATE tetikleyicisinde, sütunun güncellenmeden önceki eski haline
-                    <input type="text" class="conceptual-input" data-ans="OLD" placeholder="...">
-                    önekli değişkenle, güncellenen yeni haline ise
-                    <input type="text" class="conceptual-input" data-ans="NEW" placeholder="...">
-                    önekiyle erişilir.
+                    Veritabanı bağlantımızı yöneten ana EF Core sınıfı
+                    <input type="text" class="conceptual-input" data-ans="DbContext" placeholder="...">
+                    iken, bu bağlantı içerisinde C# nesnemiz ile veritabanı tablosu eşleşmesini sağlayan özellik türü ise
+                    <input type="text" class="conceptual-input" data-ans="DbSet" placeholder="...">
+                    veri tipidir.
                 </div>
-                <div class="hint-text">İpucu: OLD / NEW</div>
+                <div class="hint-text">İpucu: DbContext / DbSet</div>
             </div>
 
-            <!-- Soru 6 -->
-            <div class="conceptual-card" id="q6">
-                <h3><span>Soru 6 - Tetikleyicide Hata Fırlatma</span> <span class="quiz-badge">Triggers</span></h3>
-                <div class="conceptual-question">
-                    Trigger içerisinde koşullara uymayan durumlarda işlemi durdurup veritabanı düzeyinde özel hata fırlatmak için
-                    <input type="text" class="conceptual-input" data-ans="SIGNAL SQLSTATE" placeholder="...">
-                    kelime grubu ve '45000' durum kodu kullanılır.
-                </div>
-                <div class="hint-text">İpucu: SIGNAL SQLSTATE</div>
-            </div>
-
-            <div class="exercise-actions"
-                style="background-color: var(--bg-card); border-radius:12px; border: 1px solid var(--border);">
+            <div class="exercise-actions" style="background-color: var(--bg-card); border-radius:12px; border: 1px solid var(--border);">
                 <button class="btn btn-success" id="btn-check-conceptual">Tümünü Kontrol Et</button>
                 <button class="btn btn-info" id="btn-toggle-conceptual">Cevapları Göster</button>
                 <button class="btn btn-secondary" id="btn-hints-conceptual">İpuçlarını Aç/Kapat</button>
@@ -1364,7 +1575,9 @@
 
         // Ders Notları Alt Sekme Değiştirme
         function switchSubTab(subTabId, btn) {
-            document.querySelectorAll('.subtab-content').forEach(el => el.style.display = 'none');
+            const tabContent = btn.parentNode.parentNode;
+            tabContent.querySelectorAll('.subtab-content').forEach(el => el.style.display = 'none');
+            
             if (btn) {
                 const siblingButtons = btn.parentNode.querySelectorAll('[data-subtab]');
                 siblingButtons.forEach(el => el.classList.remove('active'));
@@ -1387,35 +1600,8 @@
         }
 
         // --- SKOR VE İLERLEME PARAMETRELERİ ---
-        const totalPoints = 43; // 34 kod boşluğu + 9 kavramsal boşluk = 43 puan.
+        const totalPoints = 38; // 28 kod boşluğu + 10 kavramsal boşluk = 38 puan.
         let userAnswers = {};
-
-        function restoreAnswers() {
-            // Kod Egzersizleri
-            document.querySelectorAll('.code-input').forEach((input, index) => {
-                const key = `code_input_${index}`;
-                if (userAnswers[key]) {
-                    input.value = input.getAttribute('data-ans');
-                    input.classList.add('correct');
-                    input.disabled = true;
-                }
-            });
-
-            // Kavramsal Egzersizler
-            document.querySelectorAll('.conceptual-input').forEach((input, index) => {
-                const key = `conceptual_input_${index}`;
-                if (userAnswers[key]) {
-                    input.value = input.getAttribute('data-ans');
-                    input.classList.add('correct');
-                    input.disabled = true;
-                }
-            });
-        }
-
-        // İlerlemeyi kaydet (Sayfa yenilenince sıfırlanması istendiğinden artık boş)
-        function saveAnswers() {
-            // Kaydetme yapılmıyor
-        }
 
         // Skor ve İlerleme Barını Güncelle
         function updateScore() {
@@ -1442,31 +1628,34 @@
             const feedback = container.querySelector('.exercise-feedback');
 
             let allCorrect = true;
+            let caseErrorExists = false;
 
             inputs.forEach((input) => {
                 const index = Array.from(document.querySelectorAll('.code-input')).indexOf(input);
                 const key = `code_input_${index}`;
 
                 if (userAnswers[key]) {
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                     return;
                 }
 
-                const userVal = input.value.trim().toLowerCase().replace(/\s+/g, '');
-                const expectedVal = input.getAttribute('data-ans').toLowerCase().replace(/\s+/g, '');
+                const userVal = input.value.trim();
+                const expectedVal = input.getAttribute('data-ans').trim();
 
-                let isCorrect = false;
                 if (userVal === expectedVal) {
-                    isCorrect = true;
-                }
-
-                if (isCorrect) {
-                    input.classList.remove('incorrect');
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                     userAnswers[key] = true;
+                } else if (userVal.toLowerCase() === expectedVal.toLowerCase()) {
+                    input.classList.remove('correct', 'incorrect');
+                    input.classList.add('case-error');
+                    allCorrect = false;
+                    caseErrorExists = true;
                 } else {
+                    input.classList.remove('correct', 'case-error');
                     input.classList.add('incorrect');
                     allCorrect = false;
                 }
@@ -1475,13 +1664,14 @@
             if (feedback) {
                 feedback.className = "exercise-feedback " + (allCorrect ? "success" : "error");
                 if (allCorrect) {
-                    feedback.innerText = "Harika! Kodun bu bölümündeki tüm boşlukları doğru doldurdunuz! 🎉";
+                    feedback.innerText = "Harika! C# kodunun bu bölümündeki tüm boşlukları doğru doldurdunuz! 🎉";
+                } else if (caseErrorExists) {
+                    feedback.innerText = "Neredeyse oldu! C# büyük/küçük harf duyarlı (Case-Sensitive) bir dildir. Sarı renkli alanlardaki harf boyutlarına dikkat edin.";
                 } else {
-                    feedback.innerText = "Bazı boşluklarda hatalar var. Kırmızı alanları inceleyin.";
+                    feedback.innerText = "Bazı boşluklarda hatalar var. Lütfen kırmızı renkli alanları inceleyip tekrar deneyin.";
                 }
             }
 
-            saveAnswers();
             updateScore();
         }
 
@@ -1501,7 +1691,7 @@
                     }
 
                     input.value = input.getAttribute('data-ans');
-                    input.classList.remove('incorrect');
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                 });
@@ -1519,8 +1709,7 @@
                         input.disabled = true;
                     } else {
                         input.value = tempUserInputs[key] || "";
-                        input.classList.remove('correct');
-                        input.classList.remove('incorrect');
+                        input.classList.remove('correct', 'incorrect', 'case-error');
                         input.disabled = false;
                     }
                 });
@@ -1535,31 +1724,34 @@
             const inputs = document.querySelectorAll('.conceptual-input');
             const feedback = document.getElementById('conceptual-feedback');
             let allCorrect = true;
+            let caseErrorExists = false;
 
             inputs.forEach((input) => {
                 const index = Array.from(inputs).indexOf(input);
                 const key = `conceptual_input_${index}`;
 
                 if (userAnswers[key]) {
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                     return;
                 }
 
-                const userVal = input.value.trim().toLowerCase().replace(/\s+/g, '');
-                const expectedVal = input.getAttribute('data-ans').toLowerCase().replace(/\s+/g, '');
+                const userVal = input.value.trim();
+                const expectedVal = input.getAttribute('data-ans').trim();
 
-                let isCorrect = false;
                 if (userVal === expectedVal) {
-                    isCorrect = true;
-                }
-
-                if (isCorrect) {
-                    input.classList.remove('incorrect');
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                     userAnswers[key] = true;
+                } else if (userVal.toLowerCase() === expectedVal.toLowerCase()) {
+                    input.classList.remove('correct', 'incorrect');
+                    input.classList.add('case-error');
+                    allCorrect = false;
+                    caseErrorExists = true;
                 } else {
+                    input.classList.remove('correct', 'case-error');
                     input.classList.add('incorrect');
                     allCorrect = false;
                 }
@@ -1568,13 +1760,14 @@
             if (feedback) {
                 feedback.className = "exercise-feedback " + (allCorrect ? "success" : "error");
                 if (allCorrect) {
-                    feedback.innerText = "Muhteşem! Tüm kavramsal soruları doğru tamamladınız! 🌟";
+                    feedback.innerText = "Muhteşem! Tüm kavramsal soruları doğru tamamlayarak tam puan aldınız! 🌟";
+                } else if (caseErrorExists) {
+                    feedback.innerText = "Sarı renkle işaretlenen kavramların büyük-küçük harf yazımına dikkat edin (Örn: DbContext, DbSet gibi).";
                 } else {
                     feedback.innerText = "Bazı kavramsal sorular hatalı doldurulmuş. Lütfen düzeltip tekrar deneyin.";
                 }
             }
 
-            saveAnswers();
             updateScore();
         }
 
@@ -1591,7 +1784,7 @@
                     }
 
                     input.value = input.getAttribute('data-ans');
-                    input.classList.remove('incorrect');
+                    input.classList.remove('incorrect', 'case-error');
                     input.classList.add('correct');
                     input.disabled = true;
                 });
@@ -1609,8 +1802,7 @@
                         input.disabled = true;
                     } else {
                         input.value = tempUserInputs[key] || "";
-                        input.classList.remove('correct');
-                        input.classList.remove('incorrect');
+                        input.classList.remove('correct', 'incorrect', 'case-error');
                         input.disabled = false;
                     }
                 });
@@ -1630,7 +1822,7 @@
             });
         }
 
-        // Dokunmatik ekranlar ve WebView'larda tıklamayı garanti altına alan yardımcı fonksiyon
+        // Dokunmatik ve mobil ekranlar için safe click bağlayıcı
         function attachSafeClick(element, callback) {
             if (!element) return;
             let touchStartX = 0;
@@ -1647,7 +1839,6 @@
                 const diffX = Math.abs(touchEndX - touchStartX);
                 const diffY = Math.abs(touchEndY - touchStartY);
 
-                // Kullanıcı sadece dokunduysa (kaydırma yapmadıysa, tolerans: 10px)
                 if (diffX < 10 && diffY < 10) {
                     e.preventDefault();
                     callback(e);
@@ -1660,11 +1851,11 @@
             });
         }
 
-        // Sayfa yüklendiğinde ve olay dinleyicileri eklendiğinde çalıştır
+        // Olay dinleyicilerini kurma
         window.addEventListener('DOMContentLoaded', () => {
             updateScore();
 
-            // Navbar Sekme Değiştirme Dinamik Event Tanımlama
+            // Navbar Sekme Geçişleri
             document.querySelectorAll('.nav-link').forEach(button => {
                 attachSafeClick(button, () => {
                     const tabId = button.getAttribute('data-tab');
@@ -1674,7 +1865,7 @@
                 });
             });
 
-            // Ders Notları Alt Sekme Dinamik Event Tanımlama
+            // Ders Notları Alt Sekme Geçişleri
             document.querySelectorAll('[data-subtab]').forEach(button => {
                 attachSafeClick(button, () => {
                     const subTabId = button.getAttribute('data-subtab');
@@ -1684,7 +1875,7 @@
                 });
             });
 
-            // Kod Egzersizleri Alt Sekme Dinamik Event Tanımlama
+            // Kod Egzersizleri Alt Sekme Geçişleri
             document.querySelectorAll('[data-code-tab]').forEach(button => {
                 attachSafeClick(button, () => {
                     const codeTabId = button.getAttribute('data-code-tab');
@@ -1694,7 +1885,7 @@
                 });
             });
 
-            // Kod Egzersizleri "Kontrol Et" ve "Cevabı Göster/Gizle" Butonları
+            // Kod Egzersizleri "Kontrol Et" ve "Cevabı Göster/Gizle"
             document.querySelectorAll('.btn-check-code').forEach(button => {
                 attachSafeClick(button, () => {
                     const target = button.getAttribute('data-target');
